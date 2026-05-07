@@ -1,0 +1,91 @@
+🟢 GLOVO — Wipeout Obstacle (Godot XR)
+
+Este objeto es un obstáculo tipo “Wipeout” diseñado para VR en Godot.
+
+
+📦 ESTRUCTURA DE LA ESCENA
+
+Glovo.tscn
+└── RigidBody3D (ROOT)
+    ├── MeshInstance3D
+    ├── CollisionShape3D
+    └── HingeJoint3D 
+
+⚙️ CONFIGURACIÓN DEL RIGIDBODY
+
+Mass (Masa) 
+* Controla cuánto cuesta mover el objeto.
+* Valor recomendado: 15 – 30
+
+Linear Damp (amortiguación lineal)
+* Reduce movimientos bruscos o desplazamientos exagerados.
+* Valor recomendado: 2.0 – 5.0
+
+ Angular Damp (amortiguación rotacional)
+* Evita que el glovo gire de forma descontrolada (importante en VR).
+* Valor recomendado: 5.0 – 10.0
+
+Gravity Scale: 0.0 Si queremos que no se caigan, sino 1.0
+
+
+🟡 PHYSICS MATERIAL (REBOTE)
+
+Se asigna en: RigidBody3D → Physics Material Override → Crear nuevo `PhysicsMaterial`
+
+Parámetros recomendados:
+* Bounce:   0.6 – 0.9
+* Friction: 0.2 – 0.5
+
+Efecto:
+* Bounce alto → efecto trampolín tipo Wipeout
+* Fricción baja → evita que el jugador se “pegue”
+
+
+🟢 MESH (VISUAL)
+
+En `MeshInstance3D`:
+* Mantener escala uniforme (1,1,1)
+* Centrar el modelo correctamente
+
+IMPORTANTE: No escalar el `RigidBody3D`. Escala el mesh.
+
+
+🔵 HINGE JOINT (BALANCEO)
+
+Conecta el glovo al suelo mediante `HingeJoint3D`.
+Esto permite el balanceo controlado tipo “Wipeout”.
+
+Conexiones:
+* Node A → suelo (StaticBody3D)
+* Node B → Glovo (RigidBody3D)
+
+Ajustes de parámetros: 
+* Limit Enabled: ON
+* Lower: -30°
+* Upper: 30°
+* Bias: 0.2 – 0.5
+* Softness: 0.3 – 0.7
+
+
+🧪 ESTABILIDAD VR
+
+Activar en RigidBody3D:
+* Continuous CD: ON
+* Contact Monitor: ON
+
+Mejora colisiones y evita glitches en VR.
+
+
+❗ PROBLEMAS COMUNES
+
+Sale disparado al pisarlo
+* Aumentar Mass
+* Aumentar Damp
+* Reducir Bounce
+
+No rebota suficiente
+* Subir Bounce
+
+Se queda pegado al suelo
+* Reducir Friction
+

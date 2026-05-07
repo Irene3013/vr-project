@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://bb5f3j0gdt6nw"]
+
+[ext_resource type="PackedScene" uid="uid://qbmx03iibuuu" path="res://addons/godot-xr-tools/staging/scene_base.tscn" id="1_bveii"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_lgur4"]
+[ext_resource type="PackedScene" uid="uid://drs4eeq721ojn" path="res://addons/godot-xr-tools/functions/movement_sprint.tscn" id="3_3tr0f"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="3_gntjm"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="4_3tr0f"]
+[ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="4_lgur4"]
+[ext_resource type="Script" uid="uid://cjfu28jmrajlo" path="res://addons/godot-xr-tools/overrides/ground_physics_settings.gd" id="6_gntjm"]
+
+[sub_resource type="Resource" id="Resource_3tr0f"]
+script = ExtResource("6_gntjm")
+jump_velocity = 5.0
+metadata/_custom_type_script = "uid://cjfu28jmrajlo"
+
+[node name="SceneBase" instance=ExtResource("1_bveii")]
+
+[node name="LeftHand" parent="XROrigin3D" index="1"]
+pose = &"default"
+
+[node name="MovementDirect" parent="XROrigin3D/LeftHand" index="0" instance=ExtResource("2_lgur4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0)
+
+[node name="MovementSprint" parent="XROrigin3D/LeftHand" index="1" instance=ExtResource("3_3tr0f")]
+sprint_type = 1
+sprint_speed_multiplier = 4.0
+
+[node name="RightHand" parent="XROrigin3D" index="2"]
+pose = &"default"
+
+[node name="MovementTurn" parent="XROrigin3D/RightHand" index="0" instance=ExtResource("3_gntjm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0.5)
+turn_mode = 2
+
+[node name="MovementJump" parent="XROrigin3D/RightHand" index="1" instance=ExtResource("4_lgur4")]
+jump_button_action = "ax_button"
+
+[node name="PlayerBody" parent="XROrigin3D" index="3" instance=ExtResource("4_3tr0f")]
+physics = SubResource("Resource_3tr0f")
