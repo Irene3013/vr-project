@@ -1,5 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://beyo4hijexp1t"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_beucs"]
+size = Vector3(2, 1, 8)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m7mj"]
 albedo_color = Color(0.20392157, 0.5411765, 0.7882353, 1)
 
@@ -7,17 +10,14 @@ albedo_color = Color(0.20392157, 0.5411765, 0.7882353, 1)
 material = SubResource("StandardMaterial3D_3m7mj")
 size = Vector3(2, 1, 8)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_beucs"]
-size = Vector3(2, 1, 8)
-
 [node name="StartPlatform" type="StaticBody3D"]
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_3m7mj")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_beucs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_3m7mj")
 
 [node name="SpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54839754, 2.782274)

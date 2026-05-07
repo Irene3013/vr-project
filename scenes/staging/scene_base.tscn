@@ -36,4 +36,5 @@ turn_mode = 2
 jump_button_action = "ax_button"
 
 [node name="PlayerBody" parent="XROrigin3D" index="3" instance=ExtResource("4_3tr0f")]
+collision_layer = 524290
 physics = SubResource("Resource_3tr0f")

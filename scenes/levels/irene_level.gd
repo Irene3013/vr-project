@@ -1,7 +1,7 @@
 @tool
 extends XRToolsSceneBase
 
-@onready var win_area: Area3D = $EndPlatform/WinArea
+@onready var win_area: Area3D = $EndPlatform/WinZone
 @onready var death_zone: Area3D = $DeathZone
 @onready var spawn_point: Marker3D = $StartPlatform/SpawnPoint
 
@@ -12,14 +12,19 @@ var is_game_over := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()  # ejecuta el _ready() de XRToolsSceneBase primero
+	#print(get_tree_string_pretty())
+	var player_body = XRToolsPlayerBody.find_instance($XROrigin3D)
+	if player_body:
+		print("PlayerBody collision layer: ", player_body.collision_layer)
+		print("PlayerBody mask layer: ", player_body.collision_mask)
 	win_area.body_entered.connect(_on_win_area_entered)
 	death_zone.body_entered.connect(_on_death_zone_entered)
 	_setup_labels()
 	
 # scene_loaded se llama automáticamente desde el staging cuando carga la escena
 # Aquí puedes pasar el spawn point inicial (ya lo gestiona la clase base)
-func scene_loaded(user_data = null) -> void:
-	super(spawn_point.name)  # Le pasamos el nombre del Marker3D como spawn point
+#func scene_loaded(user_data = null) -> void:
+	#super(spawn_point.name)  # Le pasamos el nombre del Marker3D como spawn point
 
 func _setup_labels() -> void:
 	win_label = Label3D.new()
