@@ -869,7 +869,19 @@ func _apply_velocity_and_control(delta: float):
 		# Get the collider the player collided with
 		var collision := get_slide_collision(0)
 		var collision_node := collision.get_collider()
+		
+		#OUR CODE:
+		# Rebote especial para globos
+		if collision_node.is_in_group("globo"):
+			velocity += up_gravity * 6.0
 
+			# Empujar/inclinar el globo según impacto
+			if collision_node is RigidBody3D:
+				var hit_pos = collision.get_position()
+				var dir = (collision_node.global_position - hit_pos).normalized()
+
+				collision_node.apply_impulse(dir * 4.0, hit_pos - collision_node.global_position)
+		
 		# Check for a GroundPhysics node attached to the collider
 		var collision_physics_node := \
 				collision_node.get_node_or_null("GroundPhysics") as XRToolsGroundPhysics

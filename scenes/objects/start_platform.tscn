@@ -20,4 +20,4 @@ shape = SubResource("BoxShape3D_beucs")
 mesh = SubResource("BoxMesh_3m7mj")
 
 [node name="SpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54839754, 2.782274)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8367634, 2.782274)
