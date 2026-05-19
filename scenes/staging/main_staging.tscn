@@ -5,6 +5,7 @@
 
 [node name="Staging" unique_id=281013457 instance=ExtResource("1_2h3pe")]
 main_scene = "res://scenes/levels/wipeout_level.tscn"
+prompt_for_continue = false
 
 [node name="LoadingScreen" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.949007, 1.7695999, 0.2704172)

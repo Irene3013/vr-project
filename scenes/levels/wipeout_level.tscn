@@ -1,11 +1,11 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene load_steps=24 format=3 uid="uid://erw62larmyg"]
 
-[ext_resource type="PackedScene" path="res://scenes/staging/scene_base.tscn" id="1_base"]
-[ext_resource type="Script" path="res://scenes/levels/wipeout_level.gd" id="2_script"]
-[ext_resource type="PackedScene" path="res://scenes/objects/start_platform.tscn" id="3_start"]
-[ext_resource type="PackedScene" path="res://scenes/objects/end_platform.tscn" id="4_end"]
-[ext_resource type="PackedScene" path="res://scenes/objects/death_zone.tscn" id="5_death"]
-[ext_resource type="PackedScene" path="res://scenes/player_flat.tscn" id="6_player_flat"]
+[ext_resource type="PackedScene" uid="uid://bb5f3j0gdt6nw" path="res://scenes/staging/scene_base.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://bdbbqra73pdn4" path="res://scenes/levels/wipeout_level.gd" id="2_script"]
+[ext_resource type="PackedScene" uid="uid://beyo4hijexp1t" path="res://scenes/objects/start_platform.tscn" id="3_start"]
+[ext_resource type="PackedScene" uid="uid://clexm37rqvayw" path="res://scenes/objects/end_platform.tscn" id="4_end"]
+[ext_resource type="PackedScene" uid="uid://bcr7e702nmo2v" path="res://scenes/objects/death_zone.tscn" id="5_death"]
+[ext_resource type="PackedScene" uid="uid://bos5i8rp62c0q" path="res://scenes/player_flat.tscn" id="6_player_flat"]
 [ext_resource type="PackedScene" path="res://scenes/objects/obstacles/moving_platform.tscn" id="7_moving"]
 [ext_resource type="PackedScene" path="res://scenes/objects/obstacles/rotating_obstacle.tscn" id="8_rotating"]
 [ext_resource type="PackedScene" path="res://scenes/objects/obstacles/falling_platform.tscn" id="9_falling"]
@@ -24,20 +24,11 @@ sky = SubResource("Sky_wipeout")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_safe"]
-albedo_color = Color(0.24313726, 0.7411765, 0.5176471, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bridge"]
-albedo_color = Color(0.20392157, 0.5411765, 0.7882353, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spinner_deck"]
-albedo_color = Color(0.6039216, 0.43137255, 0.85882354, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_finish"]
-albedo_color = Color(1, 0.8627451, 0.19607843, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_small"]
 size = Vector3(2.8, 0.45, 2.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_safe"]
+albedo_color = Color(0.24313726, 0.7411765, 0.5176471, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_small"]
 material = SubResource("StandardMaterial3D_safe")
@@ -46,12 +37,18 @@ size = Vector3(2.8, 0.45, 2.8)
 [sub_resource type="BoxShape3D" id="BoxShape3D_bridge"]
 size = Vector3(3.4, 0.45, 4)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bridge"]
+albedo_color = Color(0.20392157, 0.5411765, 0.7882353, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_bridge"]
 material = SubResource("StandardMaterial3D_bridge")
 size = Vector3(3.4, 0.45, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_spinner_deck"]
 size = Vector3(6, 0.45, 12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spinner_deck"]
+albedo_color = Color(0.6039216, 0.43137255, 0.85882354, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_spinner_deck"]
 material = SubResource("StandardMaterial3D_spinner_deck")
@@ -60,152 +57,148 @@ size = Vector3(6, 0.45, 12)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hammer_deck"]
 size = Vector3(6, 0.45, 14)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_finish"]
+albedo_color = Color(1, 0.8627451, 0.19607843, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_hammer_deck"]
 material = SubResource("StandardMaterial3D_finish")
 size = Vector3(6, 0.45, 14)
 
-[node name="SceneBase" instance=ExtResource("1_base")]
+[node name="SceneBase" unique_id=336776648 instance=ExtResource("1_base")]
 script = ExtResource("2_script")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0" unique_id=1224622264]
 environment = SubResource("Environment_wipeout")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1" unique_id=690795978]
 transform = Transform3D(-0.7399421, -0.44449943, 0.5045628, 0, 0.7507773, 0.66055524, -0.67267084, 0.48876163, -0.5555348, 0, 0, 0)
 light_energy = 1.4
 shadow_enabled = true
 
-[node name="StartPlatform" parent="." index="3" instance=ExtResource("3_start")]
+[node name="StartPlatform" parent="." index="3" unique_id=118518207 instance=ExtResource("3_start")]
 
-[node name="StartSign" type="Label3D" parent="." index="4"]
+[node name="StartSign" type="Label3D" parent="." index="4" unique_id=1009613218]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 1.55, -2.9)
+outline_modulate = Color(0.05, 0.05, 0.05, 1)
 text = "AVANZA"
 font_size = 96
-modulate = Color(1, 1, 1, 1)
-outline_size = 12
-outline_modulate = Color(0.05, 0.05, 0.05, 1)
 
-[node name="Platforms" type="Node3D" parent="." index="5"]
+[node name="Platforms" type="Node3D" parent="." index="5" unique_id=849336258]
 
-[node name="JumpPlatform01" type="StaticBody3D" parent="Platforms"]
+[node name="JumpPlatform01" type="StaticBody3D" parent="Platforms" index="0" unique_id=890985040]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, -7)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/JumpPlatform01"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/JumpPlatform01" index="0" unique_id=1943909869]
 shape = SubResource("BoxShape3D_small")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/JumpPlatform01"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/JumpPlatform01" index="1" unique_id=263411737]
 mesh = SubResource("BoxMesh_small")
 
-[node name="MovingPlatform01" parent="Platforms" instance=ExtResource("7_moving")]
+[node name="MovingPlatform01" parent="Platforms" index="1" unique_id=532961928 instance=ExtResource("7_moving")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0.325, -11)
 movement_offset = Vector3(2.4, 0, 0)
 cycle_time = 4.5
 
-[node name="JumpPlatform02" type="StaticBody3D" parent="Platforms"]
+[node name="JumpPlatform02" type="StaticBody3D" parent="Platforms" index="2" unique_id=824240068]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 0.325, -15)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/JumpPlatform02"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/JumpPlatform02" index="0" unique_id=1478364269]
 shape = SubResource("BoxShape3D_small")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/JumpPlatform02"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/JumpPlatform02" index="1" unique_id=1898698285]
 mesh = SubResource("BoxMesh_small")
 
-[node name="MovingPlatform02" parent="Platforms" instance=ExtResource("7_moving")]
+[node name="MovingPlatform02" parent="Platforms" index="3" unique_id=1087757093 instance=ExtResource("7_moving")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.325, -19)
 movement_offset = Vector3(-2.2, 0, 0)
 cycle_time = 5.0
 phase = 0.5
 
-[node name="SpinnerEntryBridge" type="StaticBody3D" parent="Platforms"]
+[node name="SpinnerEntryBridge" type="StaticBody3D" parent="Platforms" index="4" unique_id=1688593063]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, -22.5)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/SpinnerEntryBridge"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/SpinnerEntryBridge" index="0" unique_id=577408697]
 shape = SubResource("BoxShape3D_bridge")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/SpinnerEntryBridge"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/SpinnerEntryBridge" index="1" unique_id=1604144077]
 mesh = SubResource("BoxMesh_bridge")
 
-[node name="SpinnerDeck" type="StaticBody3D" parent="Platforms"]
+[node name="SpinnerDeck" type="StaticBody3D" parent="Platforms" index="5" unique_id=1314792811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, -29)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/SpinnerDeck"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/SpinnerDeck" index="0" unique_id=1240571592]
 shape = SubResource("BoxShape3D_spinner_deck")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/SpinnerDeck"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/SpinnerDeck" index="1" unique_id=19213765]
 mesh = SubResource("BoxMesh_spinner_deck")
 
-[node name="CollapseEntryBridge" type="StaticBody3D" parent="Platforms"]
+[node name="CollapseEntryBridge" type="StaticBody3D" parent="Platforms" index="6" unique_id=1298621182]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, -36.5)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/CollapseEntryBridge"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/CollapseEntryBridge" index="0" unique_id=1815819496]
 shape = SubResource("BoxShape3D_bridge")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/CollapseEntryBridge"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/CollapseEntryBridge" index="1" unique_id=2067811710]
 mesh = SubResource("BoxMesh_bridge")
 
-[node name="HammerDeck" type="StaticBody3D" parent="Platforms"]
+[node name="HammerDeck" type="StaticBody3D" parent="Platforms" index="7" unique_id=1478058343]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, -57)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/HammerDeck"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/HammerDeck" index="0" unique_id=809066340]
 shape = SubResource("BoxShape3D_hammer_deck")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/HammerDeck"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/HammerDeck" index="1" unique_id=1933934171]
 mesh = SubResource("BoxMesh_hammer_deck")
 
-[node name="Obstacles" type="Node3D" parent="." index="6"]
+[node name="Obstacles" type="Node3D" parent="." index="6" unique_id=1319566731]
 
-[node name="RotatingObstacle01" parent="Obstacles" instance=ExtResource("8_rotating")]
+[node name="RotatingObstacle01" parent="Obstacles" index="0" unique_id=339888968 instance=ExtResource("8_rotating")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, -25)
 rotation_speed_degrees = 65.0
 
-[node name="RotatingObstacle02" parent="Obstacles" instance=ExtResource("8_rotating")]
+[node name="RotatingObstacle02" parent="Obstacles" index="1" unique_id=2075251346 instance=ExtResource("8_rotating")]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, 1.05, -29)
 rotation_speed_degrees = -85.0
 
-[node name="RotatingObstacle03" parent="Obstacles" instance=ExtResource("8_rotating")]
+[node name="RotatingObstacle03" parent="Obstacles" index="2" unique_id=760964934 instance=ExtResource("8_rotating")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 1.05, -33)
-rotation_speed_degrees = 75.0
 
-[node name="FallingPlatform01" parent="Obstacles" instance=ExtResource("9_falling")]
+[node name="FallingPlatform01" parent="Obstacles" index="3" unique_id=9701562 instance=ExtResource("9_falling")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0.325, -40)
 
-[node name="FallingPlatform02" parent="Obstacles" instance=ExtResource("9_falling")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0, 0.325, -43)
+[node name="FallingPlatform02" parent="Obstacles" index="4" unique_id=1737160105 instance=ExtResource("9_falling")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.325, -43)
 collapse_delay = 0.9
 
-[node name="FallingPlatform03" parent="Obstacles" instance=ExtResource("9_falling")]
+[node name="FallingPlatform03" parent="Obstacles" index="5" unique_id=642366266 instance=ExtResource("9_falling")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.325, -46)
 collapse_delay = 1.1
 
-[node name="Hammer01" parent="Obstacles" instance=ExtResource("10_hammer")]
+[node name="Hammer01" parent="Obstacles" index="6" unique_id=67310808 instance=ExtResource("10_hammer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -53.5)
 swing_speed = 0.85
 
-[node name="Hammer02" parent="Obstacles" instance=ExtResource("10_hammer")]
+[node name="Hammer02" parent="Obstacles" index="7" unique_id=236008232 instance=ExtResource("10_hammer")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -58)
 swing_angle_degrees = 48.0
 swing_speed = 1.05
 
-[node name="Hammer03" parent="Obstacles" instance=ExtResource("10_hammer")]
+[node name="Hammer03" parent="Obstacles" index="8" unique_id=1302727086 instance=ExtResource("10_hammer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -62.5)
 swing_speed = 1.2
 
-[node name="EndPlatform" parent="." index="7" instance=ExtResource("4_end")]
+[node name="EndPlatform" parent="." index="7" unique_id=593127271 instance=ExtResource("4_end")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -67)
 
-[node name="FinishSign" type="Label3D" parent="." index="8"]
+[node name="FinishSign" type="Label3D" parent="." index="8" unique_id=1355971729]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 1.7, -67)
+outline_modulate = Color(0.05, 0.05, 0.05, 1)
 text = "META"
 font_size = 110
-modulate = Color(1, 1, 1, 1)
 outline_size = 14
-outline_modulate = Color(0.05, 0.05, 0.05, 1)
 
-[node name="DeathZone" parent="." index="9" instance=ExtResource("5_death")]
+[node name="DeathZone" parent="." index="9" unique_id=649232831 instance=ExtResource("5_death")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, -32)
 
-[node name="MeshInstance3D" parent="DeathZone" index="1"]
-visible = false
-
-[node name="PlayerFlat" parent="." index="10" groups=["player_body"] instance=ExtResource("6_player_flat")]
+[node name="PlayerFlat" parent="." index="10" unique_id=1538921057 groups=["player_body"] instance=ExtResource("6_player_flat")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.453, 0)

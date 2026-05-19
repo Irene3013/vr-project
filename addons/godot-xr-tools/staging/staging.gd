@@ -146,9 +146,13 @@ func load_scene(p_scene_path : String, user_data = null) -> void:
 	if !xr_camera:
 		return
 
-	# Start the threaded loading of the scene. If the scene is already cached
-	# then this will finish immediately with THREAD_LOAD_LOADED
-	ResourceLoader.load_threaded_request(p_scene_path)
+	# Load synchronously to avoid threaded-loader class registration issues in
+	# this small VR prototype.
+	var new_scene : PackedScene = load(p_scene_path)
+	if !new_scene:
+		push_error("Error loading resource ", p_scene_path)
+		get_tree().quit(1)
+		return
 
 	# If a current scene is visible then fade it out and unload it.
 	if current_scene:
@@ -170,10 +174,8 @@ func load_scene(p_scene_path : String, user_data = null) -> void:
 		current_scene.queue_free()
 		current_scene = null
 
-	# If a continue-prompt is desired or the new scene has not finished
-	# loading, then switch to the loading screen.
-	if prompt_for_continue or \
-		ResourceLoader.load_threaded_get_status(p_scene_path) != ResourceLoader.THREAD_LOAD_LOADED:
+	# If a continue-prompt is desired, then switch to the loading screen.
+	if prompt_for_continue:
 
 		# Make our loading screen visible again and reset some stuff
 		xr_origin.set_process_internal(true)
@@ -195,28 +197,7 @@ func load_scene(p_scene_path : String, user_data = null) -> void:
 	# If the loading screen is visible then show the progress and optionally
 	# wait for the continue. Once done fade out the loading screen.
 	if $LoadingScreen.visible:
-		# Loop waiting for the scene to load
-		var res : ResourceLoader.ThreadLoadStatus
-		while true:
-			var progress := []
-			res = ResourceLoader.load_threaded_get_status(p_scene_path, progress)
-			if res != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
-				break
-
-			$LoadingScreen.progress = progress[0]
-			await get_tree().create_timer(0.1).timeout
-
-		# Handle load error
-		if res != ResourceLoader.THREAD_LOAD_LOADED:
-			# Report the error to the log and console
-			push_error("Error ", res, " loading resource ", p_scene_path)
-
-			# Halt if running in the debugger
-			# gdlint:ignore=expression-not-assigned
-			breakpoint
-
-			# Terminate with a non-zero error code to indicate failure
-			get_tree().quit(1)
+		$LoadingScreen.progress = 1.0
 
 		# Wait for user to be ready
 		if prompt_for_continue:
@@ -234,9 +215,6 @@ func load_scene(p_scene_path : String, user_data = null) -> void:
 		$LoadingScreen.follow_camera = false
 		$LoadingScreen.visible = false
 		xr_origin.set_process_internal(false)
-
-	# Get the loaded scene
-	var new_scene : PackedScene = ResourceLoader.load_threaded_get(p_scene_path)
 
 	# Setup our new scene
 	current_scene = new_scene.instantiate()
