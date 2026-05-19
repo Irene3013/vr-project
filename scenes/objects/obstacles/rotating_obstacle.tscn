@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scenes/objects/obstacles/rotating_obstacle.gd" id="1_x4unm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rotating"]
+albedo_color = Color(1, 0.24313726, 0.43137255, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rotating"]
+material = SubResource("StandardMaterial3D_rotating")
+size = Vector3(5.5, 0.35, 0.35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rotating"]
+size = Vector3(5.5, 0.35, 0.35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_push"]
+size = Vector3(5.8, 0.8, 0.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hub"]
+albedo_color = Color(1, 0.8627451, 0.19607843, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hub"]
+material = SubResource("StandardMaterial3D_hub")
+top_radius = 0.38
+bottom_radius = 0.38
+height = 0.45
+
+[node name="RotatingObstacle" type="Node3D"]
+script = ExtResource("1_x4unm")
+
+[node name="Bar" type="StaticBody3D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bar"]
+shape = SubResource("BoxShape3D_rotating")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bar"]
+mesh = SubResource("BoxMesh_rotating")
+
+[node name="Hub" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_hub")
+
+[node name="PushArea" type="Area3D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PushArea"]
+shape = SubResource("BoxShape3D_push")
