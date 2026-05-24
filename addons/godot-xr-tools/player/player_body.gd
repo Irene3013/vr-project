@@ -903,12 +903,6 @@ func _apply_velocity_and_control(delta: float):
 			velocity = local_velocity + ground_velocity
 			emit_signal("player_bounced", collision_node, magnitude)
 
-	# Hack to ensure feet stick to ground (if not jumping)
-	# TODO: FIX
-	#if abs(velocity.y) < 0.001:
-	#	velocity.y = ground_velocity.y
-
-
 # Test if the player can apply ground control given the settings and the ground state.
 func _can_apply_ground_control() -> bool:
 	match ground_control:

@@ -20,6 +20,7 @@ gravity_scale = 0.0
 can_sleep = false
 continuous_cd = true
 contact_monitor = true
+max_contacts_reported = 4
 linear_damp = 2.0
 angular_damp = 1.0
 metadata/_edit_group_ = true
@@ -29,10 +30,3 @@ shape = SubResource("SphereShape3D_8eye2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_8eye2")
-
-[node name="HingeJoint3D" type="HingeJoint3D" parent="."]
-node_b = NodePath("..")
-angular_limit/enable = true
-angular_limit/upper = 0.5235988
-angular_limit/lower = 0.5235988
-angular_limit/softness = 0.5

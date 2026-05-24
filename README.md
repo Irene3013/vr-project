@@ -18,7 +18,8 @@ vr-project/
 │   ├── godot-xr-tools/         # Utilidades y componentes para VR
 │   └── godotopenxrvendors/     # Soporte para hardware de distintos fabricantes
 ├── assets/
-│   └── splash/                 # Imagen de la pantalla de inicio
+│   └── splash/                 # Imágenes y texturas (iconos de vidas, splash screen)
+│   └── audio/                  # Efectos de sonido y música
 └── scenes/
     ├── levels/                 # Escenas de niveles completos
     ├── objects/                # Objetos reutilizables (obstáculos, HUD, etc.)
@@ -29,8 +30,9 @@ vr-project/
 Plugins necesarios para el funcionamiento del proyecto. Actualmente contiene solo los addons requeridos para usar OpenXR.
 
 ### `assets/`
-Imágenes, texturas y otros recursos estáticos del proyecto.
-- `splash/` — Imagen de la pantalla de inicio.
+Imágenes, audio y otros recursos estáticos del proyecto.
+- `splash/` — Imagen de la pantalla de inicio e iconos de vidas (corazón entero y roto).
+- `audio/` — Efectos de sonido del juego: countdown, aplausos, trompeta de derrota y reacciones de la multitud.
 - *(Previsto)* `blender/` — Para modelos `.blend` si se incorporan assets 3D propios.
 
 ### `scenes/`
