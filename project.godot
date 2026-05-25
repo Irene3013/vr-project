@@ -64,8 +64,3 @@ jump={
 [rendering]
 
 renderer/rendering_method="mobile"
-
-[xr]
-
-openxr/enabled=true
-shaders/enabled=true
