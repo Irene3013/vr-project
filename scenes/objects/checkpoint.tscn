@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://btijhqkfokh6k"]
+[gd_scene load_steps=9 format=3 uid="uid://btijhqkfokh6k"]
 
 [ext_resource type="Script" uid="uid://dslbwyh6ulji5" path="res://scenes/objects/checkpoint.gd" id="1_dv8sr"]
 [ext_resource type="AudioStream" uid="uid://di6p37jlxfv5k" path="res://assets/audio/checkpoint_saved.ogg" id="2_6xeev"]
+[ext_resource type="Shader" uid="uid://c6stjd7p7728" path="res://scenes/objects/checkpoint.gdshader" id="3_dymgj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tnlyu"]
 size = Vector3(1, 0.9003906, 1)
@@ -16,6 +17,15 @@ inner_radius = 0.2
 outer_radius = 0.5
 rings = 32
 ring_segments = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_erl1y"]
+render_priority = 0
+shader = ExtResource("3_dymgj")
+shader_parameter/color = Color(0.2, 0.8, 1, 0.7)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vyc7d"]
+material = SubResource("ShaderMaterial_erl1y")
+height = 2.5
 
 [node name="Checkpoint" type="Node3D" groups=["checkpoint"]]
 script = ExtResource("1_dv8sr")
@@ -32,11 +42,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19271696, 0)
 
 [node name="CheckpointActivated" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_6xeev")
-volume_db = 20.0
+volume_db = 10.0
 
 [node name="CheckpointMesh" type="Node3D" parent="."]
 
-[node name="AroVisual" type="MeshInstance3D" parent="CheckpointMesh"]
+[node name="AroVisual_abajo" type="MeshInstance3D" parent="CheckpointMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 mesh = SubResource("TorusMesh_dymgj")
 skeleton = NodePath("../..")
+
+[node name="AroVisual_arriba" type="MeshInstance3D" parent="CheckpointMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4290378, 0)
+cast_shadow = 0
+mesh = SubResource("TorusMesh_dymgj")
+
+[node name="CilindroHolograma" type="MeshInstance3D" parent="CheckpointMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1834911, 0)
+mesh = SubResource("CylinderMesh_vyc7d")

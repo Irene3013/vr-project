@@ -8,7 +8,7 @@ signal game_finished
 # Paneles
 @onready var fail_panel: ColorRect = $SubViewportContainer/SubViewport/UILayer/FailPanel
 @onready var end_panel: ColorRect = $SubViewportContainer/SubViewport/UILayer/EndPanel
-
+@onready var light_wave = $SubViewportContainer/SubViewport/UILayer/LightWave
 # Labels 
 @onready var countdown_label: Label = $SubViewportContainer/SubViewport/UILayer/CountdownPanel/CountdownLabel
 @onready var timer_label: Label = $SubViewportContainer/SubViewport/UILayer/TimerLabel
@@ -27,6 +27,11 @@ signal game_finished
 	$SubViewportContainer/SubViewport/UILayer/LivesContainer/Heart2,
 	$SubViewportContainer/SubViewport/UILayer/LivesContainer/Heart3
 ]
+
+# Confetti
+@onready var confetti_cian = $SubViewportContainer/SubViewport/UILayer/EndPanel/Confetti/Cian
+@onready var confetti_magenta = $SubViewportContainer/SubViewport/UILayer/EndPanel/Confetti/Magenta
+@onready var confetti_yellow = $SubViewportContainer/SubViewport/UILayer/EndPanel/Confetti/Yellow
 
 # Valores constantes
 const MAX_LIVES := 3
@@ -113,12 +118,33 @@ func start_countdown() -> void:
 # Muestra brevemente el mensaje "Checkpoint saved" en el label del countdown
 # usando un tamaño de fuente reducido para no interferir con el countdown principal.
 func show_sheckpoint_saved() -> void:
-	countdown_label.add_theme_font_size_override("font_size", 130)
+	play_checkpoint_effect()
+	
+	countdown_label.add_theme_font_size_override("font_size", 100)
+	countdown_label.add_theme_color_override("font_outline_color", Color.BLACK)
+	countdown_label.add_theme_constant_override("outline_size", 8)
 	countdown_label.text = "Checkpoint\nsaved"
+	
 	await get_tree().create_timer(0.8).timeout
+	
 	countdown_label.text = ""
 	countdown_label.remove_theme_font_size_override("font_size")
+	countdown_label.remove_theme_color_override("font_outline_color")
+	countdown_label.remove_theme_constant_override("outline_size")
 
+
+func play_checkpoint_effect():
+	var mat = light_wave.material
+	mat.set_shader_parameter("wave_pos", -0.2)  # empieza abajo
+
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_method(
+		func(v): mat.set_shader_parameter("wave_pos", v),
+		1.2, # empieza
+		-0.2, #acaba
+		1.2 # duración
+	)
 # Gestiona la perdida de una vida: respawnea al jugador, actualiza los corazones
 # y muestra el panel de fallo con fade out. Si no quedan vidas, llama a show_gameover.
 func show_fail(respawn_callable: Callable, duration: float = 1.0) -> void:
@@ -147,6 +173,11 @@ func show_fail(respawn_callable: Callable, duration: float = 1.0) -> void:
 		fail_panel.modulate.a = 1.0
 		timer_running = true
 
+func play_confetti():
+	confetti_cian.emitting = true
+	confetti_magenta.emitting = true
+	confetti_yellow.emitting = true
+	
 # Muestra el panel de victoria con el tiempo final y audio de aplausos.
 # Oculta el cronometro y los corazones, y emite game_finished.
 func show_win() -> void:
@@ -171,6 +202,8 @@ func show_win() -> void:
 	# Fade in
 	var tween = create_tween()
 	tween.tween_property(end_panel, "modulate:a", 1.0, 0.5)
+	
+	play_confetti()
 
 # Muestra el panel de game over sin tiempo final y con audio de derrota.
 # Oculta el cronometro y los corazones, y emite game_finished.

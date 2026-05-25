@@ -6,7 +6,7 @@ extends XRToolsSceneBase
 @onready var spawn_point: Marker3D = $SceneBasics/StartPlatform/SpawnPoint
 @onready var hud = $XROrigin3D/XRCamera3D/HUD
 @onready var right_controller = $XROrigin3D/RightHand
-@onready var confeti = $XROrigin3D/XRCamera3D/Confeti
+#@onready var confeti = $XROrigin3D/XRCamera3D/Confeti
 
 # Sistema de respawn y checkpoints
 var is_game_over: bool = false
@@ -55,6 +55,8 @@ func scene_loaded(user_data = null) -> void:
 	# Conectar todos los checkpoints del nivel
 	for checkpoint in get_tree().get_nodes_in_group("checkpoint"):
 		checkpoint.checkpoint_reached.connect(_on_checkpoint_reached)
+	# Asignar color a no-activo
+	get_tree().call_group("checkpoint", "reset_checkpoint")
 	
 	win_area.body_entered.connect(_on_win_area_entered)
 	death_zone.body_entered.connect(_on_death_zone_entered)
@@ -71,6 +73,7 @@ func scene_visible(user_data = null) -> void:
 # Actualiza el punto de respawn activo al nuevo transform del checkpoint alcanzado
 # y muestra el mensaje de confirmacion en el HUD.
 func _on_checkpoint_reached(new_transform: Transform3D) -> void:
+	#get_tree().call_group("checkpoint", "reset_checkpoint")
 	_current_spawn_transform = new_transform  # actualiza el spawn activo
 	hud.show_sheckpoint_saved() # muestra checkpoint saved
 
@@ -79,7 +82,7 @@ func _on_checkpoint_reached(new_transform: Transform3D) -> void:
 func _on_win_area_entered(body: Node3D) -> void:
 	if _is_player(body):
 		hud.show_win()
-		confeti.emitting = true   # lanza el confeti
+		#confeti.emitting = true   # lanza el confeti
 
 # Gestiona la entrada del jugador en la zona de muerte.
 # Delega en el HUD la logica de vidas y respawn.
@@ -91,7 +94,6 @@ func _on_death_zone_entered(body: Node3D) -> void:
 # o al spawn inicial si no hay ningun checkpoint activado.
 func _respawn_player() -> void:
 	#center_player_on(_spawn_transform)
-	print(_current_spawn_transform)
 	center_player_on(_current_spawn_transform) 
 
 # Devuelve true si el cuerpo dado pertenece al grupo del jugador XR.

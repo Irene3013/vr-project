@@ -63,4 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.7798796)
 [node name="Checkpoint1" parent="Checkpoints" index="0" instance=ExtResource("8_dtswk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5115088, -5.527124)
 
+[node name="Checkpoint2" parent="Checkpoints" index="1" instance=ExtResource("8_dtswk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5115088, -1.9114017)
+
 [node name="LevelAudio" type="AudioStreamPlayer" parent="." index="6"]

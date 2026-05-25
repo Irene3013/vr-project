@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bb5f3j0gdt6nw"]
+[gd_scene load_steps=10 format=3 uid="uid://bb5f3j0gdt6nw"]
 
 [ext_resource type="PackedScene" uid="uid://qbmx03iibuuu" path="res://addons/godot-xr-tools/staging/scene_base.tscn" id="1_bveii"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_lgur4"]
@@ -9,23 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="4_lgur4"]
 [ext_resource type="Script" uid="uid://cjfu28jmrajlo" path="res://addons/godot-xr-tools/overrides/ground_physics_settings.gd" id="6_gntjm"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xgbr7"]
-lifetime_randomness = 0.1
-direction = Vector3(0, 1, 0)
-spread = 180.0
-initial_velocity_max = 3.0
-gravity = Vector3(0, -5, 0)
-scale_min = 0.049999997
-scale_over_velocity_max = 3.0
-color = Color(1.353256, 0, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgbr7"]
-albedo_color = Color(1.353256, 0, 0, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_3hm58"]
-material = SubResource("StandardMaterial3D_xgbr7")
-size = Vector2(0.05, 0.05)
-
 [sub_resource type="Resource" id="Resource_3tr0f"]
 script = ExtResource("6_gntjm")
 jump_velocity = 5.0
@@ -34,14 +17,6 @@ metadata/_custom_type_script = "uid://cjfu28jmrajlo"
 [node name="SceneBase" instance=ExtResource("1_bveii")]
 
 [node name="HUD" parent="XROrigin3D/XRCamera3D" index="0" instance=ExtResource("2_xgbr7")]
-
-[node name="Confeti" type="GPUParticles3D" parent="XROrigin3D/XRCamera3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -1)
-emitting = false
-amount = 200
-one_shot = true
-process_material = SubResource("ParticleProcessMaterial_xgbr7")
-draw_pass_1 = SubResource("PlaneMesh_3hm58")
 
 [node name="LeftHand" parent="XROrigin3D" index="1"]
 pose = &"default"
