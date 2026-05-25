@@ -19,6 +19,11 @@ run/main_scene="uid://blrb2u1n8tgvb"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout=""
+general/3d_panning_strength=1.0
+
 [autoload]
 
 XRToolsUserSettings="*uid://bqgb8i74tm0t"

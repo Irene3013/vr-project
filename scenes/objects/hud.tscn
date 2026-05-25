@@ -1,6 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bf4wjpi1ddw2p"]
+[gd_scene load_steps=12 format=3 uid="uid://bf4wjpi1ddw2p"]
 
-[ext_resource type="Script" uid="uid://b8ui64d387qsf" path="res://hud.gd" id="1_03qjd"]
+[ext_resource type="Script" uid="uid://b8ui64d387qsf" path="res://scenes/objects/hud.gd" id="1_03qjd"]
+[ext_resource type="AudioStream" uid="uid://deug0or8jdgqn" path="res://assets/audio/crowd-disappointment-reaction.ogg" id="2_gi63j"]
+[ext_resource type="AudioStream" uid="uid://d18jknji07edx" path="res://assets/audio/applause-cheer.ogg" id="2_oykjr"]
+[ext_resource type="AudioStream" uid="uid://dj5vdojmn4cpw" path="res://assets/audio/game-countdown.ogg" id="2_u7xb1"]
+[ext_resource type="PackedScene" uid="uid://b3xw8gv1152ju" path="res://scenes/objects/confetti.tscn" id="4_y5rlc"]
+[ext_resource type="Texture2D" uid="uid://7q7doqfb4sn8" path="res://assets/splash/pixel-art-heart.png" id="5_1gkr5"]
+[ext_resource type="Shader" uid="uid://cmj3511jrdpv6" path="res://scenes/objects/hud_lightwave.gdshader" id="6_txqic"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_u7xb1"]
 size = Vector2(1.2, 0.7)
@@ -14,6 +20,10 @@ transparency = 1
 no_depth_test = true
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_oykjr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y5rlc"]
+shader = ExtResource("6_txqic")
+shader_parameter/wave_pos = -0.2
 
 [node name="HUD" type="Node3D"]
 script = ExtResource("1_03qjd")
@@ -33,15 +43,24 @@ handle_input_locally = false
 size = Vector2i(1200, 700)
 render_target_update_mode = 4
 
-[node name="FailPanel" type="ColorRect" parent="SubViewportContainer/SubViewport"]
+[node name="UILayer" type="Control" parent="SubViewportContainer/SubViewport"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/FailPanel"]
+[node name="FailPanel" type="ColorRect" parent="SubViewportContainer/SubViewport/UILayer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8627451)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/UILayer/FailPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -57,18 +76,25 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="FailLabel" type="Label" parent="SubViewportContainer/SubViewport/FailPanel/VBoxContainer"]
+[node name="FailLabel" type="Label" parent="SubViewportContainer/SubViewport/UILayer/FailPanel/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 140
+text = "YOU FAILED"
 
-[node name="WinPanel" type="ColorRect" parent="SubViewportContainer/SubViewport"]
+[node name="FailAudio" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/UILayer/FailPanel"]
+stream = ExtResource("2_gi63j")
+volume_db = 10.0
+
+[node name="EndPanel" type="ColorRect" parent="SubViewportContainer/SubViewport/UILayer"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0.8627451)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/WinPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/UILayer/EndPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -81,41 +107,113 @@ offset_right = 20.0
 offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
 
-[node name="WinLabel" type="Label" parent="SubViewportContainer/SubViewport/WinPanel/VBoxContainer"]
+[node name="EndLabel" type="Label" parent="SubViewportContainer/SubViewport/UILayer/EndPanel/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 140
+text = "YOU WIN!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimeLabel" type="Label" parent="SubViewportContainer/SubViewport/WinPanel/VBoxContainer"]
+[node name="TimeLabel" type="Label" parent="SubViewportContainer/SubViewport/UILayer/EndPanel/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "00:00.00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CountdownPanel" type="Control" parent="SubViewportContainer/SubViewport"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Confetti" parent="SubViewportContainer/SubViewport/UILayer/EndPanel" instance=ExtResource("4_y5rlc")]
+position = Vector2(600, 700)
 
-[node name="CountdownLabel" type="Label" parent="SubViewportContainer/SubViewport/CountdownPanel"]
+[node name="EndAudio" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/UILayer/EndPanel"]
+stream = ExtResource("2_oykjr")
+volume_db = 10.0
+
+[node name="CountdownPanel" type="Control" parent="SubViewportContainer/SubViewport/UILayer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -150.0
+offset_top = -130.0
+offset_right = 150.0
+offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TimerLabel" type="Label" parent="SubViewportContainer/SubViewport"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="CountdownLabel" type="Label" parent="SubViewportContainer/SubViewport/UILayer/CountdownPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -130.0
+offset_right = 150.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 200
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountdownAudio" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/UILayer/CountdownPanel"]
+stream = ExtResource("2_u7xb1")
+volume_db = 10.0
+
+[node name="TimerLabel" type="Label" parent="SubViewportContainer/SubViewport/UILayer"]
+layout_mode = 1
+offset_left = 755.0
+offset_top = 18.0
+offset_right = 1152.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 100
+text = "00:00.00"
+horizontal_alignment = 2
+
+[node name="LivesContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/UILayer"]
+layout_mode = 1
+offset_left = 56.0
+offset_top = 166.0
+offset_right = 1143.0
+offset_bottom = 246.0
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Heart1" type="TextureRect" parent="SubViewportContainer/SubViewport/UILayer/LivesContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("5_1gkr5")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Heart2" type="TextureRect" parent="SubViewportContainer/SubViewport/UILayer/LivesContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("5_1gkr5")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Heart3" type="TextureRect" parent="SubViewportContainer/SubViewport/UILayer/LivesContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("5_1gkr5")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="LightWave" type="ColorRect" parent="SubViewportContainer/SubViewport/UILayer"]
+material = SubResource("ShaderMaterial_y5rlc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

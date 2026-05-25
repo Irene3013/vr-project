@@ -44,10 +44,8 @@ signal request_quit
 
 
 ## Interface
-
 func _ready() -> void:
 	pass
-
 
 # Add support for is_xr_class on XRTools classes
 func is_xr_class(xr_name:  String) -> bool:

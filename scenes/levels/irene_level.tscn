@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dwl3hl3u7okkq"]
+[gd_scene load_steps=12 format=3 uid="uid://dwl3hl3u7okkq"]
 
 [ext_resource type="PackedScene" uid="uid://bb5f3j0gdt6nw" path="res://scenes/staging/scene_base.tscn" id="1_bjayp"]
 [ext_resource type="PackedScene" uid="uid://byckgrjjsjrfw" path="res://scenes/objects/globo.tscn" id="2_23lc3"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://clexm37rqvayw" path="res://scenes/objects/end_platform.tscn" id="4_2413c"]
 [ext_resource type="Script" uid="uid://dtqj1ogeximaj" path="res://scenes/objects/end_platform.gd" id="5_50j27"]
 [ext_resource type="PackedScene" uid="uid://bcr7e702nmo2v" path="res://scenes/objects/death_zone.tscn" id="5_hraxr"]
-[ext_resource type="PackedScene" uid="uid://bos5i8rp62c0q" path="res://scenes/player_flat.tscn" id="8_dtswk"]
+[ext_resource type="PackedScene" uid="uid://btijhqkfokh6k" path="res://scenes/objects/checkpoint.tscn" id="8_dtswk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bjayp"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -22,44 +22,48 @@ sky = SubResource("Sky_23lc3")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="SceneBase" unique_id=1985026294 instance=ExtResource("1_bjayp")]
+[node name="SceneBase" instance=ExtResource("1_bjayp")]
 script = ExtResource("2_ttno8")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0" unique_id=928000663]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
 environment = SubResource("Environment_lxja7")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1" unique_id=523426229]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 10.550703, -8.134906)
 shadow_enabled = true
 
 [node name="XROrigin3D" parent="." index="2"]
-process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5011215, 0)
-visible = false
 
-[node name="Obstacles" type="Node" parent="." index="3" unique_id=2132608157]
+[node name="Obstacles" type="Node" parent="." index="3"]
 
-[node name="Globo1" parent="Obstacles" index="0" unique_id=993907499 instance=ExtResource("2_23lc3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.6790786)
-
-[node name="Globo2" parent="Obstacles" index="1" unique_id=204150485 instance=ExtResource("2_23lc3")]
+[node name="Globo2" parent="Obstacles" index="0" instance=ExtResource("2_23lc3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.170029)
 
-[node name="Globo3" parent="Obstacles" index="2" unique_id=403047689 instance=ExtResource("2_23lc3")]
+[node name="Globo3" parent="Obstacles" index="1" instance=ExtResource("2_23lc3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.673911)
 
-[node name="Globo4" parent="Obstacles" index="3" unique_id=247869093 instance=ExtResource("2_23lc3")]
+[node name="Globo4" parent="Obstacles" index="2" instance=ExtResource("2_23lc3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.173537)
 
-[node name="StartPlatform" parent="." index="4" unique_id=1898156983 instance=ExtResource("3_lxja7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.7798796)
+[node name="SceneBasics" type="Node" parent="." index="4"]
 
-[node name="EndPlatform" parent="." index="5" unique_id=690574061 instance=ExtResource("4_2413c")]
+[node name="DeathZone" parent="SceneBasics" index="0" instance=ExtResource("5_hraxr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.98095, 0)
+
+[node name="EndPlatform" parent="SceneBasics" index="1" instance=ExtResource("4_2413c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.71683)
 script = ExtResource("5_50j27")
 
-[node name="DeathZone" parent="." index="6" unique_id=177351287 instance=ExtResource("5_hraxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.6857033, 0)
+[node name="StartPlatform" parent="SceneBasics" index="2" instance=ExtResource("3_lxja7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.7798796)
 
-[node name="PlayerFlat" parent="." index="7" unique_id=1480648275 groups=["player_body"] instance=ExtResource("8_dtswk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4530299, 0)
+[node name="Checkpoints" type="Node" parent="." index="5"]
+
+[node name="Checkpoint1" parent="Checkpoints" index="0" instance=ExtResource("8_dtswk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5115088, -5.527124)
+
+[node name="Checkpoint2" parent="Checkpoints" index="1" instance=ExtResource("8_dtswk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5115088, -1.9114017)
+
+[node name="LevelAudio" type="AudioStreamPlayer" parent="." index="6"]

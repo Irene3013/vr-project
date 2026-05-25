@@ -9,7 +9,7 @@ size = Vector3(1000, 5, 1000)
 size = Vector3(1000, 5, 1000)
 
 [node name="DeathZone" type="Area3D"]
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_womhb")
 metadata/_edit_group_ = true
 
