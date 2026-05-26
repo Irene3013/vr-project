@@ -12,3 +12,4 @@ func get_time_formatted() -> String:
 	var seconds := int(time_seconds) % 60
 	var millis := int((time_seconds - floor(time_seconds)) * 100)
 	return "%02d:%02d.%02d" % [minutes, seconds, millis]
+# data
