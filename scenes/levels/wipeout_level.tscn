@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://scenes/objects/obstacles/rotating_obstacle.tscn" id="8_rotating"]
 [ext_resource type="PackedScene" path="res://scenes/objects/obstacles/falling_platform.tscn" id="9_falling"]
 [ext_resource type="PackedScene" path="res://scenes/objects/obstacles/swinging_hammer.tscn" id="10_hammer"]
+[ext_resource type="PackedScene" uid="uid://dknibswi4g282" path="res://scenes/levels/doors_level.tscn" id="11_2r3dx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wipeout"]
 sky_horizon_color = Color(0.5882353, 0.7882353, 0.9607843, 1)
@@ -202,3 +203,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, -32)
 
 [node name="PlayerFlat" parent="." index="10" unique_id=1538921057 groups=["player_body"] instance=ExtResource("6_player_flat")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.453, 0)
+
+[node name="DoorsLevel" parent="." index="11" unique_id=637612041 instance=ExtResource("11_2r3dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.425371, 0, 0)
+script = null
