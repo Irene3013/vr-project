@@ -157,7 +157,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.3088875e-05, 0.325, -66.826
 move_speed = 3.2
 
 [node name="ElevatorPlatform2" parent="Platforms" index="9" unique_id=1273554212 instance=ExtResource("12_elevator")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1966722, 9.02919, 8.243115)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1966722, 9.02919, 7.420491)
 
 [node name="Obstacles" type="Node3D" parent="." index="6" unique_id=1319566731]
 
@@ -197,7 +197,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -62.5)
 swing_speed = 1.2
 
 [node name="EndPlatform" parent="." index="7" unique_id=593127271 instance=ExtResource("4_end")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92752993, 15.496159, 2.848422)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92752993, 15.496159, 1.7911644)
 
 [node name="FinishSign" type="Label3D" parent="." index="8" unique_id=1355971729]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 16.623203, -64.84967)

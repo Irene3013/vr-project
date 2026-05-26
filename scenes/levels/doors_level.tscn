@@ -60,9 +60,11 @@ mesh = SubResource("BoxMesh_bridge")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, -63)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/BalanceSafePlatform" unique_id=2021137264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.9100494)
 shape = SubResource("BoxShape3D_safe")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/BalanceSafePlatform" unique_id=681686871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.91362)
 mesh = SubResource("BoxMesh_safe")
 
 [node name="Obstacles" type="Node3D" parent="." unique_id=1987529926]
@@ -108,23 +110,23 @@ collapse_delay = 0.95
 [node name="BalancePlatforms" type="Node3D" parent="Obstacles" unique_id=1994546363]
 
 [node name="BalancePlatform01" parent="Obstacles/BalancePlatforms" unique_id=394888500 instance=ExtResource("4_balance")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -46.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -45.044014)
 
 [node name="BalancePlatform02" parent="Obstacles/BalancePlatforms" unique_id=881974752 instance=ExtResource("4_balance")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -52)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -50.04277)
 max_tilt_degrees = 10.0
 
 [node name="BalancePlatform03" parent="Obstacles/BalancePlatforms" unique_id=546797183 instance=ExtResource("4_balance")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -57.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -55.038998)
 max_tilt_degrees = 13.0
 
 [node name="Checkpoints" type="Node3D" parent="." unique_id=165357521]
 
 [node name="LevelCheckpoint" parent="Checkpoints" unique_id=168242851 instance=ExtResource("5_checkpoint")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -63)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -61.09066)
 
 [node name="FinishSign" type="Label3D" parent="." unique_id=334521116]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 1.8, -70)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 1.8, -68.033195)
 outline_modulate = Color(0.05, 0.05, 0.05, 1)
 text = "GO AHEAD"
 font_size = 110
