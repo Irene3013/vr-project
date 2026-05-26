@@ -199,10 +199,11 @@ func show_win() -> void:
 	end_sound.stream = WIN_AUDIO
 	end_sound.play()
 	
-	# Fade in
+	# Animacion para fade in
 	var tween = create_tween()
 	tween.tween_property(end_panel, "modulate:a", 1.0, 0.5)
 	
+	# Mostrar confetis de victoria
 	play_confetti()
 
 # Muestra el panel de game over sin tiempo final y con audio de derrota.

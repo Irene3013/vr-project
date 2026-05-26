@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://blrb2u1n8tgvb"]
+[gd_scene load_steps=3 format=3 uid="uid://blrb2u1n8tgvb"]
 
 [ext_resource type="PackedScene" uid="uid://bnqnnnet4dw12" path="res://addons/godot-xr-tools/staging/staging.tscn" id="1_2h3pe"]
 [ext_resource type="Texture2D" uid="uid://cs35tt238xl4v" path="res://assets/splash/1_wipeout_splash.png" id="2_fw3y5"]
 
-[node name="Staging" unique_id=281013457 instance=ExtResource("1_2h3pe")]
+[node name="Staging" instance=ExtResource("1_2h3pe")]
 main_scene = "res://scenes/levels/wipeout_level.tscn"
 
 [node name="LoadingScreen" parent="." index="2"]

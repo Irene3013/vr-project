@@ -82,7 +82,6 @@ func _on_checkpoint_reached(new_transform: Transform3D) -> void:
 func _on_win_area_entered(body: Node3D) -> void:
 	if _is_player(body):
 		hud.show_win()
-		#confeti.emitting = true   # lanza el confeti
 
 # Gestiona la entrada del jugador en la zona de muerte.
 # Delega en el HUD la logica de vidas y respawn.
@@ -93,7 +92,6 @@ func _on_death_zone_entered(body: Node3D) -> void:
 # Teletransporta al jugador al ultimo checkpoint activado,
 # o al spawn inicial si no hay ningun checkpoint activado.
 func _respawn_player() -> void:
-	#center_player_on(_spawn_transform)
 	center_player_on(_current_spawn_transform) 
 
 # Devuelve true si el cuerpo dado pertenece al grupo del jugador XR.

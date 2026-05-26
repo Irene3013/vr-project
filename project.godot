@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="VR_Proyect"
 run/main_scene="uid://blrb2u1n8tgvb"
-config/features=PackedStringArray("4.6", "Mobile")
+config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
 [audio]
@@ -26,8 +26,9 @@ general/3d_panning_strength=1.0
 
 [autoload]
 
-XRToolsUserSettings="*uid://bqgb8i74tm0t"
-XRToolsRumbleManager="*uid://by853dk86g1qw"
+XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
+XRToolsRumbleManager="*res://addons/godot-xr-tools/rumble/rumble_manager.gd"
+GameManager="*res://autoload/game_manager.gd"
 
 [editor_plugins]
 
@@ -64,3 +65,8 @@ jump={
 [rendering]
 
 renderer/rendering_method="mobile"
+
+[xr]
+
+openxr/enabled=true
+shaders/enabled=true
