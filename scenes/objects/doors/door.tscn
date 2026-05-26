@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://jhjaueogdx0v"]
 
 [ext_resource type="Script" uid="uid://bc6mmnoxmim1l" path="res://scenes/objects/doors/door.gd" id="1_door"]
+[ext_resource type="AudioStream" path="res://assets/audio/open-door.ogg" id="2_open_audio"]
+[ext_resource type="AudioStream" path="res://assets/audio/locked-door.ogg" id="3_locked_audio"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_door"]
 size = Vector3(2, 2.5, 0.25)
@@ -50,3 +52,13 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea" unique_id=347379823]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -0.08)
 shape = SubResource("BoxShape3D_hit")
+
+[node name="OpenAudio" type="AudioStreamPlayer3D" parent="." unique_id=1244400046]
+stream = ExtResource("2_open_audio")
+volume_db = 2.0
+max_distance = 18.0
+
+[node name="LockedAudio" type="AudioStreamPlayer3D" parent="." unique_id=1041045683]
+stream = ExtResource("3_locked_audio")
+volume_db = 2.0
+max_distance = 18.0

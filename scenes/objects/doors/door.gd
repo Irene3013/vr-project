@@ -15,6 +15,8 @@ signal opened
 @onready var collision_shape: CollisionShape3D = $DoorBody/CollisionShape3D
 @onready var hit_area: Area3D = $HitArea
 @onready var mesh_instance: MeshInstance3D = $DoorBody/MeshInstance3D
+@onready var open_audio: AudioStreamPlayer3D = $OpenAudio
+@onready var locked_audio: AudioStreamPlayer3D = $LockedAudio
 
 var is_correct := false
 var _opened := false
@@ -32,6 +34,7 @@ func configure(correct: bool) -> void:
 	if is_node_ready():
 		door_body.transform = _closed_transform
 		collision_shape.disabled = false
+		hit_area.monitoring = true
 		_set_visual_state(false)
 
 func _on_hit_area_body_entered(body: Node3D) -> void:
@@ -46,6 +49,7 @@ func _on_hit_area_body_entered(body: Node3D) -> void:
 func _open_correct_door() -> void:
 	_opened = true
 	_set_visual_state(true)
+	open_audio.play()
 
 	# Desactivar colisión antes de animar garantiza paso estable en VR.
 	collision_shape.disabled = true
@@ -68,6 +72,7 @@ func _show_blocked_feedback() -> void:
 		return
 
 	_feedback_running = true
+	locked_audio.play()
 	var bump_transform := _closed_transform
 	bump_transform.origin += Vector3(0.0, 0.0, -blocked_feedback_distance)
 
