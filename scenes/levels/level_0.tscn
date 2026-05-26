@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://b50k0usf61yvt"]
+[gd_scene load_steps=16 format=3 uid="uid://b50k0usf61yvt"]
 
 [ext_resource type="PackedScene" uid="uid://bb5f3j0gdt6nw" path="res://scenes/staging/scene_base.tscn" id="1_p6rmu"]
 [ext_resource type="Script" uid="uid://coh1tt4hkeoyg" path="res://scenes/levels/irene_level.gd" id="2_6ayib"]
-[ext_resource type="PackedScene" uid="uid://byckgrjjsjrfw" path="res://scenes/objects/obstacles/globo.tscn" id="3_65guy"]
 [ext_resource type="PackedScene" uid="uid://beyo4hijexp1t" path="res://scenes/objects/start_platform.tscn" id="3_vhkxn"]
 [ext_resource type="Script" uid="uid://dtqj1ogeximaj" path="res://scenes/objects/end_platform.gd" id="6_p6rmu"]
+[ext_resource type="PackedScene" uid="uid://bmi8aiqu7nyd" path="res://scenes/objects/obstacles/moving_platform.tscn" id="7_3mnpy"]
+[ext_resource type="PackedScene" uid="uid://btijhqkfokh6k" path="res://scenes/objects/checkpoint.tscn" id="7_6ayib"]
 [ext_resource type="PackedScene" uid="uid://clexm37rqvayw" path="res://scenes/objects/end_platform.tscn" id="8_ypncs"]
 [ext_resource type="PackedScene" uid="uid://bcr7e702nmo2v" path="res://scenes/objects/death_zone.tscn" id="9_0qejo"]
+[ext_resource type="PackedScene" uid="uid://c2l7id3poov8u" path="res://scenes/objects/obstacles/falling_platform.tscn" id="9_65guy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bjayp"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -21,6 +23,16 @@ sky = SubResource("Sky_23lc3")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3mnpy"]
+size = Vector3(5.001343, 0.65, 2.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mnpy"]
+albedo_color = Color(0.2901961, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6ayib"]
+material = SubResource("StandardMaterial3D_3mnpy")
+size = Vector3(5, 0.65, 2.4)
+
 [node name="SceneBase" instance=ExtResource("1_p6rmu")]
 script = ExtResource("2_6ayib")
 
@@ -34,27 +46,68 @@ shadow_enabled = true
 [node name="XROrigin3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5011215, 0)
 
-[node name="Obstacles" type="Node" parent="." index="3"]
-
-[node name="Globo2" parent="Obstacles" index="0" instance=ExtResource("3_65guy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.170029)
-
-[node name="Globo3" parent="Obstacles" index="1" instance=ExtResource("3_65guy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.673911)
-
-[node name="Globo4" parent="Obstacles" index="2" instance=ExtResource("3_65guy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.173537)
-
-[node name="SceneBasics" type="Node" parent="." index="4"]
+[node name="SceneBasics" type="Node" parent="." index="3"]
 
 [node name="DeathZone" parent="SceneBasics" index="0" instance=ExtResource("9_0qejo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.98095, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.684345, 0)
 
 [node name="EndPlatform" parent="SceneBasics" index="1" instance=ExtResource("8_ypncs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.71683)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.058111, 0, -26.721066)
 script = ExtResource("6_p6rmu")
 
 [node name="StartPlatform" parent="SceneBasics" index="2" instance=ExtResource("3_vhkxn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.7798796)
 
-[node name="LevelAudio" type="AudioStreamPlayer" parent="." index="5"]
+[node name="BasicPlatforms" type="Node" parent="." index="4"]
+
+[node name="Platform1" type="StaticBody3D" parent="BasicPlatforms" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9440053, -0.16555107, -18.234676)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BasicPlatforms/Platform1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011413574, 0, 0)
+shape = SubResource("BoxShape3D_3mnpy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BasicPlatforms/Platform1" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013482571, 0, 0)
+mesh = SubResource("BoxMesh_6ayib")
+
+[node name="Checkpoints" type="Node" parent="." index="5"]
+
+[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource("7_6ayib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.244163, 0.2292422, -18.271355)
+
+[node name="MovingPlatforms" type="Node" parent="." index="6"]
+
+[node name="MovingPlatform1" parent="MovingPlatforms" index="0" instance=ExtResource("7_3mnpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+movement_offset = Vector3(5, 0, 0)
+cycle_time = 10.0
+
+[node name="MovingPlatform2" parent="MovingPlatforms" index="1" instance=ExtResource("7_3mnpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2132683, 0, -14.808315)
+movement_offset = Vector3(0, 0, 3)
+cycle_time = 6.0
+
+[node name="MovingPlatform3" parent="MovingPlatforms" index="2" instance=ExtResource("7_3mnpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6080521, 0, -19.157856)
+movement_offset = Vector3(0, 0, 3)
+cycle_time = 6.0
+
+[node name="MovingPlatform4" parent="MovingPlatforms" index="3" instance=ExtResource("7_3mnpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.445169, 0, -16.654068)
+movement_offset = Vector3(0, 0, -3)
+cycle_time = 6.0
+
+[node name="MovingPlatform5" parent="MovingPlatforms" index="4" instance=ExtResource("7_3mnpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.078427, 0, -19.31789)
+movement_offset = Vector3(0, 0, 3)
+cycle_time = 6.0
+
+[node name="FallingPlatforms" type="Node" parent="." index="7"]
+
+[node name="FallingPlatform" parent="FallingPlatforms" index="0" instance=ExtResource("9_65guy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.066794, 0, -22.86503)
+collapse_delay = 0.8
+
+[node name="LevelAudio" type="AudioStreamPlayer" parent="." index="8"]

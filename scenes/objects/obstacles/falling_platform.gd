@@ -9,6 +9,8 @@ extends StaticBody3D
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 @onready var trigger_area: Area3D = $TriggerArea
 @onready var trigger_shape: CollisionShape3D = $TriggerArea/CollisionShape3D
+@onready var fall_sound = $FallingAudio3D
+
 
 var _start_position := Vector3.ZERO
 var _armed := true
@@ -30,7 +32,7 @@ func _on_trigger_area_body_entered(body: Node3D) -> void:
 func _collapse() -> void:
 	collision_shape.disabled = true
 	trigger_shape.disabled = true
-
+	fall_sound.play()
 	var tween := create_tween()
 	tween.tween_property(self, "position", _start_position + Vector3.DOWN * fall_distance, fall_duration)
 	await tween.finished

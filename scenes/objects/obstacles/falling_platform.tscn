@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://c2l7id3poov8u"]
 
-[ext_resource type="Script" path="res://scenes/objects/obstacles/falling_platform.gd" id="1_d2s5q"]
+[ext_resource type="Script" uid="uid://cfomuh2au1n5p" path="res://scenes/objects/obstacles/falling_platform.gd" id="1_d2s5q"]
+[ext_resource type="AudioStream" uid="uid://dwybny3x3ftm4" path="res://assets/audio/falling-whistle-cartoon.ogg" id="2_m0dod"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_falling"]
+size = Vector3(2.4, 0.35, 2.4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_falling"]
 albedo_color = Color(0.96862745, 0.78431374, 0.19607843, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_falling"]
 material = SubResource("StandardMaterial3D_falling")
-size = Vector3(2.4, 0.35, 2.4)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_falling"]
 size = Vector3(2.4, 0.35, 2.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_trigger"]
@@ -31,3 +32,9 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TriggerArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
 shape = SubResource("BoxShape3D_trigger")
+
+[node name="FallingAudio3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_m0dod")
+attenuation_model = 2
+volume_db = 30.0
+max_distance = 15.0

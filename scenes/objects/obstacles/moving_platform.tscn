@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://bmi8aiqu7nyd"]
 
-[ext_resource type="Script" path="res://scenes/objects/obstacles/moving_platform.gd" id="1_y8oju"]
+[ext_resource type="Script" uid="uid://colf81jkkvita" path="res://scenes/objects/obstacles/moving_platform.gd" id="1_y8oju"]
+[ext_resource type="AudioStream" uid="uid://cgkhmbh1x1pu3" path="res://assets/audio/hover-engine.ogg" id="2_j0g62"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_moving"]
+size = Vector3(2.4, 0.35, 2.4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_moving"]
 albedo_color = Color(0.2509804, 0.6901961, 0.9411765, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_moving"]
 material = SubResource("StandardMaterial3D_moving")
-size = Vector3(2.4, 0.35, 2.4)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_moving"]
 size = Vector3(2.4, 0.35, 2.4)
 
 [node name="MovingPlatform" type="StaticBody3D"]
@@ -21,3 +22,11 @@ shape = SubResource("BoxShape3D_moving")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_moving")
+
+[node name="AudioEffect3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_j0g62")
+attenuation_model = 2
+volume_db = 20.0
+max_distance = 10.0
+area_mask = 3
+parameters/looping = true

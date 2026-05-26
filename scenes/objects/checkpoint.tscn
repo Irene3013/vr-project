@@ -29,6 +29,7 @@ height = 2.5
 
 [node name="Checkpoint" type="Node3D" groups=["checkpoint"]]
 script = ExtResource("1_dv8sr")
+metadata/_edit_group_ = true
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_mask = 3

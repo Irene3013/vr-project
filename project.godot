@@ -28,7 +28,6 @@ general/3d_panning_strength=1.0
 
 XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
 XRToolsRumbleManager="*res://addons/godot-xr-tools/rumble/rumble_manager.gd"
-GameManager="*res://autoload/game_manager.gd"
 
 [editor_plugins]
 
