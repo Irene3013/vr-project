@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://jhjaueogdx0v"]
+
+[ext_resource type="Script" uid="uid://bc6mmnoxmim1l" path="res://scenes/objects/doors/door.gd" id="1_door"]
+[ext_resource type="AudioStream" path="res://assets/audio/open-door.ogg" id="2_open_audio"]
+[ext_resource type="AudioStream" path="res://assets/audio/locked-door.ogg" id="3_locked_audio"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door"]
+size = Vector3(2, 2.5, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_door"]
+albedo_color = Color(0.95, 0.28, 0.55, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_door"]
+material = SubResource("StandardMaterial3D_door")
+size = Vector3(2, 2.5, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trim"]
+albedo_color = Color(1, 0.9, 0.18, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_trim"]
+material = SubResource("StandardMaterial3D_trim")
+size = Vector3(2.16, 0.18, 0.32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hit"]
+size = Vector3(2.15, 2.65, 0.85)
+
+[node name="Door" type="Node3D" unique_id=569213011]
+script = ExtResource("1_door")
+
+[node name="DoorBody" type="StaticBody3D" parent="." unique_id=1808205339]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorBody" unique_id=1995866356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+shape = SubResource("BoxShape3D_door")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DoorBody" unique_id=1101940664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+mesh = SubResource("BoxMesh_door")
+
+[node name="TopTrim" type="MeshInstance3D" parent="DoorBody" unique_id=1056611150]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.42, -0.02)
+mesh = SubResource("BoxMesh_trim")
+
+[node name="BottomTrim" type="MeshInstance3D" parent="DoorBody" unique_id=1186804550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.02)
+mesh = SubResource("BoxMesh_trim")
+
+[node name="HitArea" type="Area3D" parent="." unique_id=1198232363]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea" unique_id=347379823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -0.08)
+shape = SubResource("BoxShape3D_hit")
+
+[node name="OpenAudio" type="AudioStreamPlayer3D" parent="." unique_id=1244400046]
+stream = ExtResource("2_open_audio")
+volume_db = 2.0
+max_distance = 18.0
+
+[node name="LockedAudio" type="AudioStreamPlayer3D" parent="." unique_id=1041045683]
+stream = ExtResource("3_locked_audio")
+volume_db = 2.0
+max_distance = 18.0

@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" path="res://scenes/objects/obstacles/rotating_obstacle.tscn" id="8_rotating"]
 [ext_resource type="PackedScene" path="res://scenes/objects/obstacles/falling_platform.tscn" id="9_falling"]
 [ext_resource type="PackedScene" path="res://scenes/objects/obstacles/swinging_hammer.tscn" id="10_hammer"]
+[ext_resource type="PackedScene" uid="uid://dknibswi4g282" path="res://scenes/levels/doors_level.tscn" id="11_2r3dx"]
+[ext_resource type="PackedScene" uid="uid://clkdpdqwglvg4" path="res://scenes/objects/obstacles/elevator_platform.tscn" id="12_elevator"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wipeout"]
 sky_horizon_color = Color(0.5882353, 0.7882353, 0.9607843, 1)
@@ -150,7 +152,14 @@ shape = SubResource("BoxShape3D_hammer_deck")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/HammerDeck" index="1"]
 mesh = SubResource("BoxMesh_hammer_deck")
 
-[node name="Obstacles" type="Node3D" parent="." index="6"]
+[node name="ElevatorPlatform" parent="Platforms" index="8" unique_id=781633825 instance=ExtResource("12_elevator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.3088875e-05, 0.325, -66.82617)
+move_speed = 3.2
+
+[node name="ElevatorPlatform2" parent="Platforms" index="9" unique_id=1273554212 instance=ExtResource("12_elevator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1966722, 9.02919, 7.420491)
+
+[node name="Obstacles" type="Node3D" parent="." index="6" unique_id=1319566731]
 
 [node name="RotatingObstacle01" parent="Obstacles" index="0" instance=ExtResource("8_rotating")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, -25)
@@ -187,11 +196,11 @@ swing_speed = 1.05
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -62.5)
 swing_speed = 1.2
 
-[node name="EndPlatform" parent="." index="7" instance=ExtResource("4_end")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -67)
+[node name="EndPlatform" parent="." index="7" unique_id=593127271 instance=ExtResource("4_end")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92752993, 15.496159, 1.7911644)
 
-[node name="FinishSign" type="Label3D" parent="." index="8"]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 1.7, -67)
+[node name="FinishSign" type="Label3D" parent="." index="8" unique_id=1355971729]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 16.623203, -64.84967)
 outline_modulate = Color(0.05, 0.05, 0.05, 1)
 text = "META"
 font_size = 110
@@ -202,3 +211,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, -32)
 
 [node name="PlayerFlat" parent="." index="10" groups=["player_body"] instance=ExtResource("6_player_flat")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.453, 0)
+
+[node name="DoorsLevel" parent="." index="11" unique_id=637612041 instance=ExtResource("11_2r3dx")]
+transform = Transform3D(-0.9995702, 0, 0.029317304, 0, 1, 0, -0.029317304, 0, -0.9995702, 0.4102602, 8.759274, -59.693382)
+script = null

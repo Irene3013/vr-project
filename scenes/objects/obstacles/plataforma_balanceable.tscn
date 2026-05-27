@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cy7sbxfewu1sm"]
+
+[ext_resource type="Script" uid="uid://c7yf5qkwe0ftt" path="res://scenes/objects/obstacles/plataforma_balanceable.gd" id="1_balance"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_balance"]
+size = Vector3(4.4, 0.35, 3.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_balance"]
+albedo_color = Color(0.18, 0.72, 0.95, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_balance"]
+material = SubResource("StandardMaterial3D_balance")
+size = Vector3(4.4, 0.35, 3.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_player_area"]
+size = Vector3(4.6, 1.2, 3.5)
+
+[node name="PlataformaBalanceable" type="Node3D" unique_id=2052577039]
+script = ExtResource("1_balance")
+
+[node name="Pivot" type="Node3D" parent="." unique_id=1464302588]
+
+[node name="Deck" type="StaticBody3D" parent="Pivot" unique_id=556630071]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/Deck" unique_id=891250802]
+shape = SubResource("BoxShape3D_balance")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot/Deck" unique_id=316975743]
+mesh = SubResource("BoxMesh_balance")
+
+[node name="PlayerArea" type="Area3D" parent="." unique_id=425596629]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerArea" unique_id=553999102]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("BoxShape3D_player_area")

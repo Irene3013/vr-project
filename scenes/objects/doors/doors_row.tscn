@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d310dnt5qsa0u"]
+
+[ext_resource type="Script" uid="uid://tsyeym8ff55m" path="res://scenes/objects/doors/doors_row.gd" id="1_row"]
+[ext_resource type="PackedScene" uid="uid://jhjaueogdx0v" path="res://scenes/objects/doors/door.tscn" id="2_door"]
+
+[node name="RowDoors" type="Node3D" unique_id=872701199]
+script = ExtResource("1_row")
+
+[node name="DoorLeft" parent="." unique_id=1772718588 instance=ExtResource("2_door")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.15, 0, 0)
+
+[node name="DoorCenter" parent="." unique_id=1709682023 instance=ExtResource("2_door")]
+
+[node name="DoorRight" parent="." unique_id=643557985 instance=ExtResource("2_door")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.15, 0, 0)
