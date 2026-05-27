@@ -164,4 +164,32 @@ rotation_speed_degrees = -60.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5263703, -44.93268)
 rotation_speed_degrees = 80.0
 
-[node name="LevelAudio" type="AudioStreamPlayer" parent="." index="10"]
+[node name="Instructions" type="Node" parent="." index="10"]
+
+[node name="TryNotToFallSign" type="Label3D" parent="Instructions" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.9698338, -0.24376738, 0, 0.24376738, 0.9698338, -0.13106441, 1.55, -6.846804)
+outline_modulate = Color(0.05, 0.05, 0.05, 1)
+text = "DON'T FALL!"
+font_size = 96
+
+[node name="CheckpointSign" type="Label3D" parent="Instructions" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.98414624, -0.17735961, 0, 0.17735961, 0.98414624, 6.5880485, 2.195149, -19.529764)
+outline_modulate = Color(0.05, 0.05, 0.05, 1)
+text = "STEP INTO THE
+CHECKPOINT
+TO SAVE
+YOUR PROGRESS"
+font_size = 96
+
+[node name="WhatchYourStepSign" type="Label3D" parent="Instructions" index="2"]
+transform = Transform3D(1.1314076e-08, -0.9999998, -1.7439015e-05, -4.222176e-08, -1.7496757e-05, 0.99999976, -1, -1.1313339e-08, -4.2221966e-08, -11.670939, 0.19223452, -19.337158)
+outline_modulate = Color(0.05, 0.05, 0.05, 1)
+text = "WATCH
+YOUR STEP!"
+font_size = 82
+
+[node name="GoodLuckSign" type="Label3D" parent="Instructions" index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.9994281, 0.033818014, 0, -0.033818014, 0.9994281, -0.0049114227, 1.0384037, -29.074055)
+outline_modulate = Color(0.05, 0.05, 0.05, 1)
+text = "GOOD LUCK!"
+font_size = 96

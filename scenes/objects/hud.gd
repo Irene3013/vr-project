@@ -19,6 +19,7 @@ signal game_finished
 @onready var coundown_sound = $SubViewportContainer/SubViewport/UILayer/CountdownPanel/CountdownAudio
 @onready var end_sound = $SubViewportContainer/SubViewport/UILayer/EndPanel/EndAudio
 @onready var fail_sound = $SubViewportContainer/SubViewport/UILayer/FailPanel/FailAudio
+@onready var game_audio = $SubViewportContainer/SubViewport/GameAudio
 
 # Nodos de los corazones (vidas)
 @onready var hearts_container = $SubViewportContainer/SubViewport/UILayer/LivesContainer
@@ -117,7 +118,11 @@ func start_countdown() -> void:
 	countdown_label.text = ""
 	timer_running = true
 	emit_signal("countdown_finished")
-
+	
+	# Esperar un poco a que empiece la musica
+	await get_tree().create_timer(0.8).timeout
+	game_audio.play()
+	
 # Muestra brevemente el mensaje "Checkpoint saved" en el label del countdown
 # usando un tamaño de fuente reducido para no interferir con el countdown principal.
 func show_sheckpoint_saved() -> void:

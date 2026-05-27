@@ -33,7 +33,12 @@ radius = 2.1
 
 [node name="Globo" type="RigidBody3D" groups=["globo"]]
 collision_mask = 3
+axis_lock_linear_x = true
 axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 mass = 20.0
 physics_material_override = SubResource("PhysicsMaterial_8eye2")
 gravity_scale = 0.0

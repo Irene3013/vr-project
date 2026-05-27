@@ -12,7 +12,7 @@ extends StaticBody3D
 		albedo_color = value
 		_update_platform()
 
-@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
+@onready var mesh_instance: MeshInstance3D = $MeshPlataforma
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
 

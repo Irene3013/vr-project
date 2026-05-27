@@ -6,7 +6,6 @@ extends XRToolsSceneBase
 @onready var spawn_point: Marker3D = $SceneBasics/StartPlatform/SpawnPoint
 @onready var hud = $XROrigin3D/XRCamera3D/HUD
 @onready var right_controller = $XROrigin3D/RightHand
-#@onready var confeti = $XROrigin3D/XRCamera3D/Confeti
 
 # Sistema de respawn y checkpoints
 var is_game_over: bool = false

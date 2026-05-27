@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bf4wjpi1ddw2p"]
+[gd_scene load_steps=13 format=3 uid="uid://bf4wjpi1ddw2p"]
 
 [ext_resource type="Script" uid="uid://b8ui64d387qsf" path="res://scenes/objects/hud.gd" id="1_03qjd"]
 [ext_resource type="AudioStream" uid="uid://deug0or8jdgqn" path="res://assets/audio/crowd-disappointment-reaction.ogg" id="2_gi63j"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b3xw8gv1152ju" path="res://scenes/objects/confetti.tscn" id="4_y5rlc"]
 [ext_resource type="Texture2D" uid="uid://7q7doqfb4sn8" path="res://assets/splash/pixel-art-heart.png" id="5_1gkr5"]
 [ext_resource type="Shader" uid="uid://cmj3511jrdpv6" path="res://assets/shaders/hud_lightwave.gdshader" id="6_txqic"]
+[ext_resource type="AudioStream" uid="uid://dijm3pi3oik1u" path="res://assets/audio/funky-guitar-and-bass-loop.ogg" id="8_cmwec"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_u7xb1"]
 size = Vector2(1.2, 0.7)
@@ -238,3 +239,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="GameAudio" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport"]
+stream = ExtResource("8_cmwec")
+parameters/looping = true
