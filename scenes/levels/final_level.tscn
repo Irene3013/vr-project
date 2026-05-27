@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://3t6x6ke4a3on"]
+
+[ext_resource type="PackedScene" uid="uid://bb5f3j0gdt6nw" path="res://scenes/staging/scene_base.tscn" id="1_ednuw"]
+[ext_resource type="Script" uid="uid://c8wm2txk27qrh" path="res://scenes/levels/miriam_level.gd" id="2_ednuw"]
+[ext_resource type="PackedScene" uid="uid://beyo4hijexp1t" path="res://scenes/objects/start_platform.tscn" id="3_nrnnf"]
+[ext_resource type="PackedScene" uid="uid://8rm0kttrjt7u" path="res://scenes/objects/tilted_floor.tscn" id="7_wgpre"]
+[ext_resource type="PackedScene" uid="uid://clexm37rqvayw" path="res://scenes/objects/end_platform.tscn" id="8_r7ol6"]
+[ext_resource type="PackedScene" uid="uid://bos5i8rp62c0q" path="res://scenes/player_flat.tscn" id="9_ueo0i"]
+[ext_resource type="PackedScene" uid="uid://bcr7e702nmo2v" path="res://scenes/objects/death_zone.tscn" id="10_0rbfr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wipeout"]
+sky_horizon_color = Color(0.5882353, 0.7882353, 0.9607843, 1)
+ground_horizon_color = Color(0.5882353, 0.7882353, 0.9607843, 1)
+
+[sub_resource type="Sky" id="Sky_wipeout"]
+sky_material = SubResource("ProceduralSkyMaterial_wipeout")
+
+[sub_resource type="Environment" id="Environment_wipeout"]
+background_mode = 2
+sky = SubResource("Sky_wipeout")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="SceneBase" unique_id=336776648 instance=ExtResource("1_ednuw")]
+script = ExtResource("2_ednuw")
+spawn_x = 0.0
+spawn_y = 6.0
+spawn_z = 0.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0" unique_id=1224622264]
+environment = SubResource("Environment_wipeout")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1" unique_id=690795978]
+transform = Transform3D(-0.7399421, -0.44449943, 0.5045628, 0, 0.7507773, 0.66055524, -0.67267084, 0.48876163, -0.5555348, 0, 0, 0)
+light_energy = 1.4
+shadow_enabled = true
+
+[node name="StartPlatform" parent="." index="3" unique_id=118518207 instance=ExtResource("3_nrnnf")]
+
+[node name="StartSign" type="Label3D" parent="." index="4" unique_id=1009613218]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 1.55, -2.9)
+outline_modulate = Color(0.05, 0.05, 0.05, 1)
+text = "AVANZA"
+font_size = 96
+
+[node name="Platforms" type="Node3D" parent="." index="5" unique_id=849336258]
+
+[node name="Obstacles" type="Node3D" parent="." index="6" unique_id=1319566731]
+
+[node name="EndPlatform" parent="." index="7" unique_id=593127271 instance=ExtResource("8_r7ol6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -40.12)
+
+[node name="FinishSign" type="Label3D" parent="." index="8" unique_id=1355971729]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 6.297145, -37.24414)
+outline_modulate = Color(0.05, 0.05, 0.05, 1)
+text = "META"
+font_size = 110
+outline_size = 14
+
+[node name="PlayerFlat" parent="." index="9" unique_id=1538921057 groups=["player_body"] instance=ExtResource("9_ueo0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.453, 0)
+
+[node name="DeathZone" parent="." index="10" unique_id=116586263 instance=ExtResource("10_0rbfr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 21.957512)
+
+[node name="TiltedFloor" parent="." index="11" unique_id=1643701295 instance=ExtResource("7_wgpre")]
+transform = Transform3D(1, 0, 0, 0, 0.99254614, -0.12186935, 0, 0.12186935, 0.99254614, 0, 1.8915462, -20.473171)
+
+[node name="LogTimer" type="Timer" parent="." index="12" unique_id=548254656]
