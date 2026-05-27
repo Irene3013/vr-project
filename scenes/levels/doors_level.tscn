@@ -1,10 +1,11 @@
-[gd_scene format=3 uid="uid://dknibswi4g282"]
+[gd_scene load_steps=15 format=3 uid="uid://dknibswi4g282"]
 
 [ext_resource type="Script" uid="uid://dk1j2aan6o77a" path="res://scenes/levels/doors_level.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://caknjdwpl6su6" path="res://scenes/objects/regular_platform.tscn" id="2_ahpcv"]
 [ext_resource type="PackedScene" uid="uid://d310dnt5qsa0u" path="res://scenes/objects/doors/doors_row.tscn" id="2_doors_row"]
-[ext_resource type="PackedScene" path="res://scenes/objects/obstacles/falling_platform.tscn" id="3_falling"]
-[ext_resource type="PackedScene" uid="uid://cy7sbxfewu1sm" path="res://scenes/objects/obstacles/plataforma_balanceable.tscn" id="4_balance"]
+[ext_resource type="PackedScene" uid="uid://c2l7id3poov8u" path="res://scenes/objects/obstacles/falling_platform.tscn" id="3_falling"]
 [ext_resource type="PackedScene" uid="uid://btijhqkfokh6k" path="res://scenes/objects/checkpoint.tscn" id="5_checkpoint"]
+[ext_resource type="PackedScene" uid="uid://bws6ly6dbbcx0" path="res://scenes/objects/obstacles/swinging_hammer.tscn" id="6_jibcb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_door_floor"]
 size = Vector3(6.5, 0.35, 31)
@@ -33,100 +34,119 @@ albedo_color = Color(0.2, 0.85, 0.45, 1)
 material = SubResource("StandardMaterial3D_safe")
 size = Vector3(5.5, 0.35, 4)
 
-[node name="DoorsLevel" type="Node3D" unique_id=637612041]
+[node name="DoorsLevel" type="Node3D"]
 script = ExtResource("1_script")
 
-[node name="Platforms" type="Node3D" parent="." unique_id=1588484716]
+[node name="Platforms" type="Node3D" parent="."]
 
-[node name="DoorZoneFloor" type="StaticBody3D" parent="Platforms" unique_id=892647288]
+[node name="DoorZoneFloor" type="StaticBody3D" parent="Platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, -13)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/DoorZoneFloor" unique_id=2098417990]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/DoorZoneFloor"]
 shape = SubResource("BoxShape3D_door_floor")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/DoorZoneFloor" unique_id=1534940003]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/DoorZoneFloor"]
 mesh = SubResource("BoxMesh_door_floor")
 
-[node name="CollapseEntryBridge" type="StaticBody3D" parent="Platforms" unique_id=436786021]
+[node name="CollapseEntryBridge" type="StaticBody3D" parent="Platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, -28.5)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/CollapseEntryBridge" unique_id=804934704]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/CollapseEntryBridge"]
 shape = SubResource("BoxShape3D_bridge")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/CollapseEntryBridge" unique_id=1247447421]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/CollapseEntryBridge"]
 mesh = SubResource("BoxMesh_bridge")
 
-[node name="BalanceSafePlatform" type="StaticBody3D" parent="Platforms" unique_id=1383721694]
+[node name="BalanceSafePlatform" type="StaticBody3D" parent="Platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, -63)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/BalanceSafePlatform" unique_id=2021137264]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/BalanceSafePlatform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.9100494)
 shape = SubResource("BoxShape3D_safe")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/BalanceSafePlatform" unique_id=681686871]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/BalanceSafePlatform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.91362)
 mesh = SubResource("BoxMesh_safe")
 
-[node name="Obstacles" type="Node3D" parent="." unique_id=1987529926]
+[node name="Platform1" parent="Platforms" instance=ExtResource("2_ahpcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50.61123)
+platform_size = Vector3(6, 0.65, 14)
 
-[node name="DoorRows" type="Node3D" parent="Obstacles" unique_id=1825677644]
+[node name="Platform2" parent="Platforms" instance=ExtResource("2_ahpcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.8185997, -44.573433)
+platform_size = Vector3(2.4, 0.65, 22)
+albedo_color = Color(0.74083763, 0.30699795, 0.7540768, 1)
 
-[node name="DoorRow01" parent="Obstacles/DoorRows" unique_id=1355006071 instance=ExtResource("2_doors_row")]
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="DoorRows" type="Node3D" parent="Obstacles"]
+
+[node name="DoorRow01" parent="Obstacles/DoorRows" instance=ExtResource("2_doors_row")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 
-[node name="DoorRow02" parent="Obstacles/DoorRows" unique_id=74772082 instance=ExtResource("2_doors_row")]
+[node name="DoorRow02" parent="Obstacles/DoorRows" instance=ExtResource("2_doors_row")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -12)
 
-[node name="DoorRow03" parent="Obstacles/DoorRows" unique_id=1710078394 instance=ExtResource("2_doors_row")]
+[node name="DoorRow03" parent="Obstacles/DoorRows" instance=ExtResource("2_doors_row")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -18)
 
-[node name="DoorRow04" parent="Obstacles/DoorRows" unique_id=742090880 instance=ExtResource("2_doors_row")]
+[node name="DoorRow04" parent="Obstacles/DoorRows" instance=ExtResource("2_doors_row")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -24)
 
-[node name="FallingPlatforms" type="Node3D" parent="Obstacles" unique_id=1913518508]
+[node name="FallingPlatforms" type="Node3D" parent="Obstacles"]
 
-[node name="FallingPlatformL01" parent="Obstacles/FallingPlatforms" unique_id=2083043373 instance=ExtResource("3_falling")]
+[node name="FallingPlatformL01" parent="Obstacles/FallingPlatforms" instance=ExtResource("3_falling")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, 0.325, -33)
 
-[node name="FallingPlatformR01" parent="Obstacles/FallingPlatforms" unique_id=675423236 instance=ExtResource("3_falling")]
+[node name="FallingPlatformR01" parent="Obstacles/FallingPlatforms" instance=ExtResource("3_falling")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, 0.325, -33)
 collapse_delay = 0.85
 
-[node name="FallingPlatformL02" parent="Obstacles/FallingPlatforms" unique_id=1655445387 instance=ExtResource("3_falling")]
+[node name="FallingPlatformL02" parent="Obstacles/FallingPlatforms" instance=ExtResource("3_falling")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, 0.325, -36.8)
 collapse_delay = 0.9
 
-[node name="FallingPlatformR02" parent="Obstacles/FallingPlatforms" unique_id=1617897414 instance=ExtResource("3_falling")]
+[node name="FallingPlatformR02" parent="Obstacles/FallingPlatforms" instance=ExtResource("3_falling")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, 0.325, -36.8)
 
-[node name="FallingPlatformL03" parent="Obstacles/FallingPlatforms" unique_id=1742272900 instance=ExtResource("3_falling")]
+[node name="FallingPlatformL03" parent="Obstacles/FallingPlatforms" instance=ExtResource("3_falling")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, 0.325, -40.6)
 collapse_delay = 1.1
 
-[node name="FallingPlatformR03" parent="Obstacles/FallingPlatforms" unique_id=1449890499 instance=ExtResource("3_falling")]
+[node name="FallingPlatformR03" parent="Obstacles/FallingPlatforms" instance=ExtResource("3_falling")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, 0.325, -40.6)
 collapse_delay = 0.95
 
-[node name="BalancePlatforms" type="Node3D" parent="Obstacles" unique_id=1994546363]
+[node name="SwingingHammers" type="Node3D" parent="Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09350014, 0)
 
-[node name="BalancePlatform01" parent="Obstacles/BalancePlatforms" unique_id=394888500 instance=ExtResource("4_balance")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -45.044014)
+[node name="SwingingHammer" parent="Obstacles/SwingingHammers" instance=ExtResource("6_jibcb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5441637, -46.16786)
+swing_angle_degrees = 80.0
+swing_speed = 0.4
 
-[node name="BalancePlatform02" parent="Obstacles/BalancePlatforms" unique_id=881974752 instance=ExtResource("4_balance")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -50.04277)
-max_tilt_degrees = 10.0
+[node name="SwingingHammer4" parent="Obstacles/SwingingHammers" instance=ExtResource("6_jibcb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5441637, -34.949566)
+swing_angle_degrees = 83.0
+swing_speed = 0.2
 
-[node name="BalancePlatform03" parent="Obstacles/BalancePlatforms" unique_id=546797183 instance=ExtResource("4_balance")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -55.038998)
-max_tilt_degrees = 13.0
+[node name="SwingingHammer2" parent="Obstacles/SwingingHammers" instance=ExtResource("6_jibcb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5441637, -50.427635)
+swing_angle_degrees = 80.0
+swing_speed = 0.4
 
-[node name="Checkpoints" type="Node3D" parent="." unique_id=165357521]
+[node name="SwingingHammer3" parent="Obstacles/SwingingHammers" instance=ExtResource("6_jibcb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016039371, 1.5441637, -54.656208)
+swing_angle_degrees = 80.0
+swing_speed = 0.4
 
-[node name="LevelCheckpoint" parent="Checkpoints" unique_id=168242851 instance=ExtResource("5_checkpoint")]
+[node name="Checkpoints" type="Node3D" parent="."]
+
+[node name="LevelCheckpoint" parent="Checkpoints" instance=ExtResource("5_checkpoint")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -61.09066)
 
-[node name="FinishSign" type="Label3D" parent="." unique_id=334521116]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 1.8, -68.033195)
+[node name="FinishSign" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 1.8, -61.513092)
 outline_modulate = Color(0.05, 0.05, 0.05, 1)
 text = "GO AHEAD"
 font_size = 110

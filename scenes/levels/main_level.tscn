@@ -1,0 +1,57 @@
+[gd_scene load_steps=12 format=3 uid="uid://dwl3hl3u7okkq"]
+
+[ext_resource type="PackedScene" uid="uid://bb5f3j0gdt6nw" path="res://scenes/staging/scene_base.tscn" id="1_kwk8y"]
+[ext_resource type="Script" uid="uid://coh1tt4hkeoyg" path="res://scenes/levels/irene_level.gd" id="2_c7w6w"]
+[ext_resource type="PackedScene" uid="uid://bcr7e702nmo2v" path="res://scenes/objects/death_zone.tscn" id="3_erkku"]
+[ext_resource type="PackedScene" uid="uid://beyo4hijexp1t" path="res://scenes/objects/start_platform.tscn" id="4_63vgv"]
+[ext_resource type="PackedScene" uid="uid://clexm37rqvayw" path="res://scenes/objects/end_platform.tscn" id="5_g2oho"]
+[ext_resource type="PackedScene" uid="uid://bu4xlyauok8da" path="res://scenes/objects/elevator.tscn" id="6_c7w6w"]
+[ext_resource type="PackedScene" uid="uid://db3op3kpa7c64" path="res://scenes/levels/first_level.tscn" id="7_pmkt5"]
+[ext_resource type="PackedScene" uid="uid://dknibswi4g282" path="res://scenes/levels/doors_level.tscn" id="8_413c4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bjayp"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_23lc3"]
+sky_material = SubResource("ProceduralSkyMaterial_bjayp")
+
+[sub_resource type="Environment" id="Environment_lxja7"]
+background_mode = 2
+sky = SubResource("Sky_23lc3")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="SceneBase" instance=ExtResource("1_kwk8y")]
+script = ExtResource("2_c7w6w")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource("Environment_lxja7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 10.550703, -8.134906)
+shadow_enabled = true
+
+[node name="XROrigin3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5011215, 0)
+
+[node name="SceneBasics" type="Node" parent="." index="3"]
+
+[node name="DeathZone" parent="SceneBasics" index="0" instance=ExtResource("3_erkku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.98095, 0)
+
+[node name="StartPlatform" parent="SceneBasics" index="1" instance=ExtResource("4_63vgv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.7798796)
+
+[node name="EndPlatform" parent="SceneBasics" index="2" instance=ExtResource("5_g2oho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1348257, 16.482117, -1.5779457)
+
+[node name="Elevator" parent="SceneBasics" index="3" instance=ExtResource("6_c7w6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -72.16351)
+lift_height = 17.0
+
+[node name="FirstLevel" parent="." index="4" instance=ExtResource("7_pmkt5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016756058, -0.050460815, -0.06111908)
+
+[node name="DoorsLevel" parent="." index="5" instance=ExtResource("8_413c4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, -5.860982)

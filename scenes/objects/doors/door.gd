@@ -52,8 +52,10 @@ func _open_correct_door() -> void:
 	open_audio.play()
 
 	# Desactivar colisión antes de animar garantiza paso estable en VR.
-	collision_shape.disabled = true
-	hit_area.monitoring = false
+	#collision_shape.disabled = true
+	#hit_area.monitoring = false
+	collision_shape.set_deferred("disabled", true)
+	hit_area.set_deferred("monitoring", false)
 
 	var target_transform := _closed_transform
 	# El nivel avanza hacia -Z; usar ángulo negativo y offset +Z hace que

@@ -5,13 +5,13 @@ extends Node3D
 ## según la posición lateral del jugador, evitando vibraciones bruscas.
 
 @export var max_tilt_degrees := 12.0
-@export var fall_tilt_degrees := 38.0
+@export var fall_tilt_degrees := 30.0 #38.0
 @export var seconds_until_fall_tilt := 2.8
 @export var tilt_smoothness := 4.5
 @export var usable_half_width := 2.0
 
 @onready var pivot: Node3D = $Pivot
-@onready var player_area: Area3D = $PlayerArea
+@onready var player_area: Area3D = $Pivot/AnimatableBody3D/PlayerArea
 
 var _players_on_platform: Array[Node3D] = []
 var _occupied_time := 0.0
@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 		var valid_players: int = 0
 		for body in _players_on_platform:
 			if is_instance_valid(body):
-				average_x += to_local(body.global_position).x
+				average_x +=  pivot.to_local(body.global_position).x #to_local(body.global_position).x
 				valid_players += 1
 
 		if valid_players > 0:
@@ -64,7 +64,7 @@ func _get_tilt_direction(normalized_x: float) -> float:
 	return _fallback_tilt_direction
 
 func _set_fallback_direction_from_body(body: Node3D) -> void:
-	var local_x := to_local(body.global_position).x
+	var local_x := pivot.to_local(body.global_position).x #to_local(body.global_position).x
 	if abs(local_x) > 0.05:
 		_fallback_tilt_direction = signf(local_x)
 	else:
