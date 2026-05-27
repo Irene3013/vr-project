@@ -870,18 +870,14 @@ func _apply_velocity_and_control(delta: float):
 		var collision := get_slide_collision(0)
 		var collision_node := collision.get_collider()
 		
-		# NUESTRO CODIGO:
-		# Rebote especial para globos
+		# NUESTRO CODIGO: 
+		# Rebote especial para globos: impulsa al jugador hacia arriba
 		if collision_node.is_in_group("globo"):
 			velocity += up_gravity * 9.0
-
-			# Empujar/inclinar el globo según impacto
 			if collision_node is RigidBody3D:
 				var hit_pos = collision.get_position()
 				var dir = (collision_node.global_position - hit_pos).normalized()
-
 				collision_node.apply_impulse(dir * 4.0, hit_pos - collision_node.global_position)
-		# FIN DE NUESTRO CODIGO
 		
 		# Check for a GroundPhysics node attached to the collider
 		var collision_physics_node := \
