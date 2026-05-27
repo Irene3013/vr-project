@@ -25,7 +25,10 @@ signal game_finished
 @onready var hearts = [
 	$SubViewportContainer/SubViewport/UILayer/LivesContainer/Heart1,
 	$SubViewportContainer/SubViewport/UILayer/LivesContainer/Heart2,
-	$SubViewportContainer/SubViewport/UILayer/LivesContainer/Heart3
+	$SubViewportContainer/SubViewport/UILayer/LivesContainer/Heart3,
+	$SubViewportContainer/SubViewport/UILayer/LivesContainer/Heart4,
+	$SubViewportContainer/SubViewport/UILayer/LivesContainer/Heart5,
+	$SubViewportContainer/SubViewport/UILayer/LivesContainer/Heart6
 ]
 
 # Confetti
@@ -34,7 +37,7 @@ signal game_finished
 @onready var confetti_yellow = $SubViewportContainer/SubViewport/UILayer/EndPanel/Confetti/Yellow
 
 # Valores constantes
-const MAX_LIVES := 3
+const MAX_LIVES := 6
 const HEART_FULL = preload("res://assets/splash/pixel-art-heart.png")
 const HEART_BROKEN = preload("res://assets/splash/broken-pixel-art-heart.png")
 const WIN_AUDIO = preload("res://assets/audio/applause-cheer.ogg")
@@ -42,7 +45,7 @@ const LOSE_AUDIO = preload("res://assets/audio/fail-trumpet.ogg")
 
 var elapsed_time: float = 0.0		# Tiempo transcurrido desde el inicio del nivel
 var timer_running: bool = false		# Indica si el cronometro esta activo
-var current_lives := 3				# Vidas restantes del jugador
+var current_lives := MAX_LIVES				# Vidas restantes del jugador
 
 # Inicializa los paneles como invisibles al cargar la escena.
 func _ready() -> void:

@@ -209,6 +209,27 @@ texture = ExtResource("5_1gkr5")
 expand_mode = 1
 stretch_mode = 4
 
+[node name="Heart4" type="TextureRect" parent="SubViewportContainer/SubViewport/UILayer/LivesContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("5_1gkr5")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Heart5" type="TextureRect" parent="SubViewportContainer/SubViewport/UILayer/LivesContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("5_1gkr5")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Heart6" type="TextureRect" parent="SubViewportContainer/SubViewport/UILayer/LivesContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("5_1gkr5")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="LightWave" type="ColorRect" parent="SubViewportContainer/SubViewport/UILayer"]
 material = SubResource("ShaderMaterial_y5rlc")
 layout_mode = 1

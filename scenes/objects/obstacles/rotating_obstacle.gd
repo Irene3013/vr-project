@@ -6,12 +6,14 @@ extends Node3D
 @export var lift_strength := 0.8
 
 @onready var push_area: Area3D = $PushArea
+@onready var rotating_audio = $RotatingAudio3D
 
 var _overlapping_bodies: Array[Node3D] = []
 
 func _ready() -> void:
 	push_area.body_entered.connect(_on_push_area_body_entered)
-	push_area.body_exited.connect(_on_push_area_body_exited)
+	push_area.body_exited.connect(_on_push_area_body_exited) 
+	rotating_audio.play()
 
 func _physics_process(delta: float) -> void:
 	var axis := rotation_axis.normalized()
