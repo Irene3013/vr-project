@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://db3op3kpa7c64"]
+[gd_scene format=3 uid="uid://db3op3kpa7c64"]
 
 [ext_resource type="PackedScene" uid="uid://caknjdwpl6su6" path="res://scenes/objects/regular_platform.tscn" id="2_xbibw"]
 [ext_resource type="PackedScene" uid="uid://btijhqkfokh6k" path="res://scenes/objects/checkpoint.tscn" id="3_qhf3p"]
@@ -7,130 +7,130 @@
 [ext_resource type="PackedScene" uid="uid://byckgrjjsjrfw" path="res://scenes/objects/obstacles/globo.tscn" id="6_fqprn"]
 [ext_resource type="PackedScene" uid="uid://ckrxair3jc1a7" path="res://scenes/objects/obstacles/rotating_obstacle.tscn" id="7_4ooow"]
 
-[node name="FirstLevel" type="Node3D"]
+[node name="FirstLevel" type="Node3D" unique_id=1237283718]
 
-[node name="BasicPlatforms" type="Node" parent="."]
+[node name="BasicPlatforms" type="Node" parent="." unique_id=858322334]
 
-[node name="Platform1" parent="BasicPlatforms" instance=ExtResource("2_xbibw")]
+[node name="Platform1" parent="BasicPlatforms" unique_id=2021497047 instance=ExtResource("2_xbibw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.403367, 0, -9.058577)
 platform_size = Vector3(4, 0.65, 2.4)
 
-[node name="Platform2" parent="BasicPlatforms" instance=ExtResource("2_xbibw")]
+[node name="Platform2" parent="BasicPlatforms" unique_id=295900641 instance=ExtResource("2_xbibw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.413759, 0, -18.519257)
 platform_size = Vector3(8, 0.65, 3)
 
-[node name="Platform3" parent="BasicPlatforms" instance=ExtResource("2_xbibw")]
+[node name="Platform3" parent="BasicPlatforms" unique_id=1296504470 instance=ExtResource("2_xbibw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.082357, 0, -21.13192)
 platform_size = Vector3(4, 0.61, 6)
 
-[node name="Platform4" parent="BasicPlatforms" instance=ExtResource("2_xbibw")]
+[node name="Platform4" parent="BasicPlatforms" unique_id=2004820539 instance=ExtResource("2_xbibw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.023035, 0, -25.19117)
 platform_size = Vector3(10, 0.65, 2.4)
 
-[node name="Platform5" parent="BasicPlatforms" instance=ExtResource("2_xbibw")]
+[node name="Platform5" parent="BasicPlatforms" unique_id=1874423360 instance=ExtResource("2_xbibw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.538284)
 platform_size = Vector3(4, 0.65, 5)
 
-[node name="Platform7" parent="BasicPlatforms" instance=ExtResource("2_xbibw")]
+[node name="Platform7" parent="BasicPlatforms" unique_id=1159873528 instance=ExtResource("2_xbibw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -67.260345)
 platform_size = Vector3(4, 0.65, 5)
 
-[node name="Platform6" parent="BasicPlatforms" instance=ExtResource("2_xbibw")]
+[node name="Platform6" parent="BasicPlatforms" unique_id=594049608 instance=ExtResource("2_xbibw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -38.9814)
 platform_size = Vector3(5, 0.65, 20)
 albedo_color = Color(0.58009994, 0.34304276, 0.98096436, 1)
 
-[node name="Checkpoints" type="Node" parent="."]
+[node name="Checkpoints" type="Node" parent="." unique_id=285769265]
 
-[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("3_qhf3p")]
+[node name="Checkpoint" parent="Checkpoints" unique_id=1479868582 instance=ExtResource("3_qhf3p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.155704, 0.3890909, -18.271355)
 
-[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("3_qhf3p")]
+[node name="Checkpoint2" parent="Checkpoints" unique_id=418332503 instance=ExtResource("3_qhf3p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0029468536, 0.35582066, -25.615713)
 
-[node name="MovingPlatforms" type="Node" parent="."]
+[node name="MovingPlatforms" type="Node" parent="." unique_id=1736059089]
 
-[node name="MovingPlatform1" parent="MovingPlatforms" instance=ExtResource("4_3kh8m")]
+[node name="MovingPlatform1" parent="MovingPlatforms" unique_id=2015173653 instance=ExtResource("4_3kh8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
 movement_offset = Vector3(2.5, 0, 0)
 cycle_time = 10.0
 
-[node name="MovingPlatform2" parent="MovingPlatforms" instance=ExtResource("4_3kh8m")]
+[node name="MovingPlatform2" parent="MovingPlatforms" unique_id=2136450641 instance=ExtResource("4_3kh8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5000257, 0, -15.096373)
 movement_offset = Vector3(0, 0, 3)
 cycle_time = 6.0
 
-[node name="MovingPlatform3" parent="MovingPlatforms" instance=ExtResource("4_3kh8m")]
+[node name="MovingPlatform3" parent="MovingPlatforms" unique_id=467690170 instance=ExtResource("4_3kh8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1153746, 0, -19.331608)
 movement_offset = Vector3(0, 0, 3)
 cycle_time = 14.0
 
-[node name="MovingPlatform4" parent="MovingPlatforms" instance=ExtResource("4_3kh8m")]
+[node name="MovingPlatform4" parent="MovingPlatforms" unique_id=530113237 instance=ExtResource("4_3kh8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.024963, 0, -16.36417)
 movement_offset = Vector3(0, 0, -3)
 cycle_time = 14.0
 
-[node name="MovingPlatform5" parent="MovingPlatforms" instance=ExtResource("4_3kh8m")]
+[node name="MovingPlatform5" parent="MovingPlatforms" unique_id=1902792898 instance=ExtResource("4_3kh8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.766932, 0, -19.337093)
 movement_offset = Vector3(0, 0, 3)
 cycle_time = 14.0
 
-[node name="FallingPlatforms" type="Node" parent="."]
+[node name="FallingPlatforms" type="Node" parent="." unique_id=1286367820]
 
-[node name="FallingPlatform" parent="FallingPlatforms" instance=ExtResource("5_3kh8m")]
+[node name="FallingPlatform" parent="FallingPlatforms" unique_id=1325794462 instance=ExtResource("5_3kh8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.523966, 0, -19.357458)
 collapse_delay = 0.8
 respawn_delay = 5.0
 fall_distance = 10.0
 fall_duration = 3.0
 
-[node name="FallingPlatform2" parent="FallingPlatforms" instance=ExtResource("5_3kh8m")]
+[node name="FallingPlatform2" parent="FallingPlatforms" unique_id=787644217 instance=ExtResource("5_3kh8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.438628, 0, -25.226406)
 collapse_delay = 0.6
 respawn_delay = 3.0
 fall_distance = 10.0
 fall_duration = 3.0
 
-[node name="FallingPlatform3" parent="FallingPlatforms" instance=ExtResource("5_3kh8m")]
+[node name="FallingPlatform3" parent="FallingPlatforms" unique_id=1050196887 instance=ExtResource("5_3kh8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5996225, 0, -25.238165)
 collapse_delay = 0.6
 respawn_delay = 3.0
 fall_distance = 10.0
 fall_duration = 3.0
 
-[node name="BouncingBaloons" type="Node" parent="."]
+[node name="BouncingBaloons" type="Node" parent="." unique_id=913928654]
 
-[node name="Globo1" parent="BouncingBaloons" instance=ExtResource("6_fqprn")]
+[node name="Globo1" parent="BouncingBaloons" unique_id=1870054512 instance=ExtResource("6_fqprn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07809353, -1.9902048, -51.643223)
 
-[node name="Globo2" parent="BouncingBaloons" instance=ExtResource("6_fqprn")]
+[node name="Globo2" parent="BouncingBaloons" unique_id=277542734 instance=ExtResource("6_fqprn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07809353, -1.9902048, -56.705105)
 
-[node name="Globo3" parent="BouncingBaloons" instance=ExtResource("6_fqprn")]
+[node name="Globo3" parent="BouncingBaloons" unique_id=1340788898 instance=ExtResource("6_fqprn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07809353, -1.9902048, -61.882248)
 
-[node name="RotatingObstacles" type="Node" parent="."]
+[node name="RotatingObstacles" type="Node" parent="." unique_id=741599287]
 
-[node name="RotatingObstacle" parent="RotatingObstacles" instance=ExtResource("7_4ooow")]
+[node name="RotatingObstacle" parent="RotatingObstacles" unique_id=1295214305 instance=ExtResource("7_4ooow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53951883, -32.757668)
 
-[node name="RotatingObstacle2" parent="RotatingObstacles" instance=ExtResource("7_4ooow")]
+[node name="RotatingObstacle2" parent="RotatingObstacles" unique_id=1425808158 instance=ExtResource("7_4ooow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5263703, -39.40177)
 rotation_speed_degrees = -60.0
 
-[node name="RotatingObstacle3" parent="RotatingObstacles" instance=ExtResource("7_4ooow")]
+[node name="RotatingObstacle3" parent="RotatingObstacles" unique_id=765449853 instance=ExtResource("7_4ooow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5263703, -44.93268)
 rotation_speed_degrees = 80.0
 
-[node name="Instructions" type="Node" parent="."]
+[node name="Instructions" type="Node" parent="." unique_id=293013108]
 
-[node name="TryNotToFallSign" type="Label3D" parent="Instructions"]
+[node name="TryNotToFallSign" type="Label3D" parent="Instructions" unique_id=398579186]
 transform = Transform3D(1, 0, 0, 0, 0.9698338, -0.24376738, 0, 0.24376738, 0.9698338, -0.13106441, 1.55, -6.846804)
 outline_modulate = Color(0.05, 0.05, 0.05, 1)
 text = "DON'T FALL!"
 font_size = 96
 
-[node name="CheckpointSign" type="Label3D" parent="Instructions"]
+[node name="CheckpointSign" type="Label3D" parent="Instructions" unique_id=561587226]
 transform = Transform3D(1, 0, 0, 0, 0.98414624, -0.17735961, 0, 0.17735961, 0.98414624, 6.5880485, 2.195149, -19.529764)
 outline_modulate = Color(0.05, 0.05, 0.05, 1)
 text = "STEP INTO THE
@@ -139,14 +139,14 @@ TO SAVE
 YOUR PROGRESS"
 font_size = 96
 
-[node name="WhatchYourStepSign" type="Label3D" parent="Instructions"]
+[node name="WhatchYourStepSign" type="Label3D" parent="Instructions" unique_id=1182444729]
 transform = Transform3D(1.1314076e-08, -0.9999998, -1.7439015e-05, -4.222176e-08, -1.7496757e-05, 0.99999976, -1, -1.1313339e-08, -4.2221966e-08, -11.670939, 0.19223452, -19.337158)
 outline_modulate = Color(0.05, 0.05, 0.05, 1)
 text = "WATCH
 YOUR STEP!"
 font_size = 82
 
-[node name="GoodLuckSign" type="Label3D" parent="Instructions"]
+[node name="GoodLuckSign" type="Label3D" parent="Instructions" unique_id=965324465]
 transform = Transform3D(1, 0, 0, 0, 0.9994281, 0.033818014, 0, -0.033818014, 0.9994281, -0.0049114227, 1.0384037, -29.074055)
 outline_modulate = Color(0.05, 0.05, 0.05, 1)
 text = "GOOD LUCK!"

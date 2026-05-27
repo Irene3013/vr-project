@@ -2,7 +2,7 @@
 
 ## Proyecto de Realidad Virtual y Aumentada
 
-Este proyecto presenta un videojuego de realidad virtual en primera persona desarrollado con **Godot 4.5** y **OpenXR**. La propuesta consiste en un juego de carreras de obstáculos donde el objetivo principal es completar un recorrido dinámico en el menor tiempo posible.
+Este proyecto presenta un videojuego de realidad virtual en primera persona desarrollado con **Godot 4** y **OpenXR**. La propuesta consiste en un juego de carreras de obstáculos donde el objetivo principal es completar un recorrido dinámico en el menor tiempo posible. Desarrollado por un grupo de tres personas como trabajo de la asignatura de Realidad Virtual y Aumentada.
 
 Para el desarrollo del juego se ha utilizado el addon `godot-xr-tools`.
 
@@ -10,7 +10,7 @@ Para el desarrollo del juego se ha utilizado el addon `godot-xr-tools`.
 
 ## Tecnologías
 
-- [Godot Engine 4.5](https://godotengine.org/) — Motor de juego principal.
+- [Godot Engine 4](https://godotengine.org/) — Motor de juego principal.
 - [OpenXR](https://www.khronos.org/openxr/) — Estándar abierto para la compatibilidad con dispositivos XR.
 - [godot-xr-tools](https://github.com/GodotVR/godot-xr-tools) — Addon con utilidades y componentes esenciales para VR en Godot.
 - [GodotOpenXRVendors](https://github.com/GodotVR/GodotOpenXRVendors) — Soporte de hardware para visores de diferentes fabricantes (Meta, Pico, etc.).
@@ -20,61 +20,117 @@ Para el desarrollo del juego se ha utilizado el addon `godot-xr-tools`.
 
 ## Mecánicas Principales y Sistema del Jugador
 
-El juego combina la velocidad de un juego contrarreloj con la dificultad para superar obstáculos en un entorno virtual.
+El juego combina la velocidad de un juego contrarreloj con la dificultad de superar obstáculos en un entorno virtual.
 
 ### Flujo de Juego y Reglas
-* **Contrarreloj:** El cronómetro global se activa en cuanto termina la cuenta atrás inicial. El objetivo es llegar a la plataforma de meta n el menor tiempo posible.
-* **Sistema de Vidas y Respawn:** El jugador cuenta con 6 vidas indicadas en el HUD (Head-Up Display). Caer al vacío o tocar un obstáculo peligroso resta una vida y teletransporta al jugador al último checkpoint activo.
-* **Checkpoints:** Cilindros holográficos distribuidos por el circuito. Al atravesarlos, cambian de color (de amarillo a verde) y guardan la posición del jugador para el próximo respawn.
-* **Fin de Partida (Game Over):** Si se agotan todas las vidas, se muestra una pantalla de derrota. Tras unos segundos el jugador vuelve al staging. 
+
+**Contrarreloj:** El cronómetro se activa en cuanto termina la cuenta atrás inicial. El objetivo es llegar a la plataforma de meta en el menor tiempo posible.
+
+**Sistema de Vidas y Respawn:** El jugador cuenta con 6 vidas indicadas en el HUD. Caer al vacío o tocar una zona de muerte resta una vida y teletransporta al jugador al último checkpoint activo.
+
+**Checkpoints:** Cilindros holográficos distribuidos por el circuito. Al atravesarlos cambian de color (de amarillo a verde) y guardan la posición del jugador para el próximo respawn.
+
+**Fin de Partida:** Si se agotan todas las vidas se muestra una pantalla de game over y el nivel se reinicia.
 
 ### Controles del Jugador
-El sistema de control del jugador utiliza las funcionalidades incluidas en `godot-xr-tools`. Las acciones del jugador son las siguientes:
 
-#### Controlador izquierdo
+El sistema de control utiliza los componentes de `godot-xr-tools`.
 
-* **Movimiento Horizontal** — `MovementDirect`: El desplazamiento principal del jugador se realiza mediante el joystick. 
-* **Sprint** — `MovementSprint`: Manteniendo pulsado el gatillo (trigger), el jugador aumenta temporalmente su velocidad de movimiento
+Controlador izquierdo:
+- **Movimiento** — `MovementDirect`: desplazamiento mediante joystick.
+- **Sprint** — `MovementSprint`: gatillo izquierdo para aumentar la velocidad.
 
-#### Controlador derecho
+Controlador derecho:
+- **Rotación** — `MovementTurn`: joystick para rotación horizontal continua.
+- **Salto** — `MovementJump`: botón A para saltar.
 
-* **Rotación Artificial** — `MovementTurn`: El joystick controla la rotación horizontal del jugador mediante un sistema de rotacion continua (smooth). 
-* **Salto** — `MovementJump`: El botón A/X del permite realizar saltos. 
+En ausencia de hardware XR el juego activa automáticamente un modo de escritorio con teclado y ratón a través del nodo `PlayerFlat`.
+
+---
 
 ## Estructura del Proyecto
-
-```
+## Estructura del Proyecto
 project/
 ├── addons/
-│   ├── godot-xr-tools/             # Utilidades y componentes para VR
-│   └── godotopenxrvendors/         # Soporte para hardware de distintos fabricantes
+│   ├── godot-xr-tools/
+│   └── godotopenxrvendors/
 ├── assets/
-│   ├── audio/                      # Efectos sonoros y música de fondo
-│   ├── shaders/                    # Efectos visuales y materiales programados
-│   ├── splash/                     # Recursos gráficos para interfaces
-│   └── wahooney.itch.io/           # Texturas de referencia visual para el entorno
+│   ├── audio/
+│   ├── shaders/
+│   └── splash/
 └── scenes/
-├── levels/                         # Escenas correspondientes a los mapas de juego
+├── levels/
 ├── objects/
-│   ├── obstacles/                  # Obstáculos instanciables (plataformas dinámicas, etc.)
-│   └── (otros objetos)             # Elementos instanciables (HUD, checkpoints, etc.)
-└── staging/                        # Gestión de pantallas de carga y ciclo de vida del juego
-```
+│   └── obstacles/
+└── staging/
 
-### Descripción de los Directorios
 
-#### `addons/`
-Plugins necesarios para el funcionamiento del proyecto en VR. 
+**`addons/`** — Plugins externos necesarios para el funcionamiento en VR.
 
-#### `assets/`
-Almacena todos los recursos visuales y sonoros que complementan la experiencia de juego:
-* **`audio/`:** Clips de sonido que ofrecen feedback al jugador durante la partida.
-* **`shaders/`:** Efectos visuales dinámicos que se aplican sobre el HUD o sobre los elementos del escenario.
-* **`splash/`:** Gráficos utilizados en los menús principales y en los indicadores visuales de la interfaz (como los iconos de vidas).
-* **`wahooney.itch.io/`:** Texturas con patrones de cuadrícula aplicadas en las superficies del suelo. Estas proporcionan referencias espaciales al cerebro del jugador mientras se desplaza, reduciendo así el *cybersickness*.
+**`assets/`** — Recursos visuales y sonoros. La carpeta `shaders/` contiene dos efectos GLSL: uno para los checkpoints holográficos y otro para el efecto de onda de luz del HUD. La carpeta `splash/` incluye las texturas de cuadrícula del suelo, que proporcionan referencias espaciales para reducir el cybersickness.
 
-#### `scenes/`
-Agrupa los archivos de escena (`.tscn`) y sus correspondientes scripts de lógica (`.gd`), organizados según su función:
-* **`staging/`:** Controla el flujo principal de la aplicación. Utiliza una escena principal que permanece siempre en memoria y se encarga de cargar, instanciar y liberar los niveles de fondo de manera fluida mediante transiciones visuales. También contiene la plantilla base del jugador.
-* **`levels/`:** Escenas de niveles completos. Cada nivel hereda de scene_base.tscn y añade únicamente los elementos propios de ese nivel: geometría, obstáculos, checkpoints, zona de muerte y zona de victoria.
-* **`objects/`:** Componentes modulares que se diseñan una sola vez y se instancian en los niveles, divididos entre los obstáculos del recorrido y los elementos de soporte del sistema de juego.
+**`scenes/levels/`** — Una escena por nivel. Todos heredan de `XRToolsSceneBase` y siguen el ciclo de vida del staging: `scene_loaded` → `scene_visible` → `scene_exiting`.
+
+**`scenes/objects/`** — Componentes reutilizables instanciados en los niveles: HUD, checkpoints, zonas de muerte y victoria, y todos los obstáculos.
+
+**`scenes/staging/`** — Escena principal `main_staging.tscn`, que permanece en memoria durante toda la ejecución y gestiona la carga y descarga de niveles con fundidos a negro.
+
+---
+
+## Arquitectura e Implementación
+
+### Sistema de Staging
+
+`main_staging.tscn` usa `staging.gd` de godot-xr-tools como controlador central. Cuando un nivel termina emite la señal `request_load_scene` con la ruta del siguiente nivel, y el staging ejecuta la transición: fundido a negro, descarga de la escena actual, carga e instanciación de la nueva, y fundido de entrada. La propiedad `main_scene` del nodo raíz define el primer nivel que se carga al arrancar.
+
+### Ciclo de Vida de un Nivel
+
+Cada nivel sobreescribe tres métodos de `XRToolsSceneBase`:
+
+`scene_loaded` — se llama antes de que la escena sea visible. Conecta las señales de las zonas de victoria y muerte, inicializa los checkpoints y coloca al jugador en el spawn point mediante `center_player_on`.
+
+`scene_visible` — se llama cuando la escena ya es visible. Arranca la cuenta atrás del HUD y activa los sistemas dinámicos del nivel (timers de obstáculos, etc.).
+
+`scene_exiting` — se llama antes de descargar la escena. Detiene timers y limpia instancias dinámicas si es necesario.
+
+### HUD
+
+El HUD es un `Node3D` con un `SubViewport` que renderiza la interfaz 2D sobre un plano 3D anclado a la cámara activa. Gestiona el cronómetro, el sistema de vidas con animaciones de rotura de corazón mediante `Tween`, la cuenta atrás inicial, los paneles de victoria y game over, y el efecto de onda de luz al activar un checkpoint. Se comunica con el nivel a través de dos señales: `countdown_finished` y `game_finished`.
+
+### Detección VR / Escritorio
+
+En `_ready`, cada nivel consulta `XRServer.primary_interface` para determinar si hay un visor inicializado. Si lo hay, desactiva `PlayerFlat` y activa `XROrigin3D`. Si no, hace lo contrario y reasigna el HUD como hijo de la cámara del `PlayerFlat`.
+
+### Obstáculos
+
+Todos los obstáculos están en `scenes/objects/obstacles/` como escenas independientes instanciables.
+
+`moving_platform.gd` — oscilación sinusoidal configurable mediante `movement_offset`, `cycle_time` y `phase`.
+
+`falling_platform.gd` — se derrumba tras `collapse_delay` segundos al ser pisada y reaparece tras `respawn_delay`.
+
+`rotating_obstacle.gd` — rota sobre un eje configurable y aplica velocidad tangencial al jugador calculada como producto vectorial entre el eje y el vector radial.
+
+`swinging_hammer.gd` — péndulo cuya fuerza de empuje es proporcional a la velocidad angular en el momento del impacto.
+
+`plataforma_balanceable.gd` — se inclina según la posición lateral del jugador y cae si permanece quieto más de `seconds_until_fall_tilt` segundos.
+
+`elevator_platform.gd` — sube al detectar al jugador en su área y baja al salir, con retardo configurable.
+
+`door.gd` / `doors_row.gd` — fila de tres puertas donde una es correcta al azar. Las incorrectas devuelven al jugador con feedback visual y sonoro.
+
+`log.gd` — tronco generado proceduralmente en tiempo de ejecución con malla, colisión y material creados por código. Cae por gravedad desde una posición elevada.
+
+`globo.gd` — objeto físico que reproduce un sonido de rebote aleatorio al contacto con el jugador.
+
+`checkpoint.gd` — cilindro holográfico que al ser atravesado emite la señal `checkpoint_reached` con su `Transform3D`, cambia de color mediante un shader y notifica al HUD.
+
+---
+
+## Cómo Ejecutar el Proyecto
+
+1. Clonar el repositorio: `git clone https://github.com/Irene3013/vr-project`
+2. Abrir el proyecto en Godot 4.
+3. Asegurarse de que los plugins `godot-xr-tools` y `godotopenxrvendors` están activados en `Proyecto > Ajustes del Proyecto > Plugins`.
+4. Para ejecutar en escritorio: establecer `PlayerFlat` como visible en la escena del nivel deseado y pulsar Play.
+5. Para ejecutar en VR: conectar el visor, asegurarse de que SteamVR u OpenXR está activo, y pulsar Play con `PlayerFlat` oculto.
