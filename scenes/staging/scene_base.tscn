@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bb5f3j0gdt6nw"]
+[gd_scene load_steps=11 format=3 uid="uid://bb5f3j0gdt6nw"]
 
 [ext_resource type="PackedScene" uid="uid://qbmx03iibuuu" path="res://addons/godot-xr-tools/staging/scene_base.tscn" id="1_bveii"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_lgur4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="4_3tr0f"]
 [ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="4_lgur4"]
 [ext_resource type="Script" uid="uid://cjfu28jmrajlo" path="res://addons/godot-xr-tools/overrides/ground_physics_settings.gd" id="6_gntjm"]
+[ext_resource type="PackedScene" uid="uid://bk6ban0hctyym" path="res://addons/godot-xr-tools/functions/movement_wall_walk.tscn" id="9_3hm58"]
 
 [sub_resource type="Resource" id="Resource_3tr0f"]
 script = ExtResource("6_gntjm")
@@ -41,3 +42,5 @@ jump_button_action = "ax_button"
 [node name="PlayerBody" parent="XROrigin3D" index="3" instance=ExtResource("4_3tr0f")]
 collision_layer = 524290
 physics = SubResource("Resource_3tr0f")
+
+[node name="MovementWallWalk" parent="XROrigin3D" index="4" instance=ExtResource("9_3hm58")]

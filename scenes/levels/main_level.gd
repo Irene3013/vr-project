@@ -5,11 +5,17 @@ extends XRToolsSceneBase
 @onready var death_zone: Area3D = $SceneBasics/DeathZone
 @onready var spawn_point: Marker3D = $SceneBasics/StartPlatform/SpawnPoint
 @onready var hud = $XROrigin3D/XRCamera3D/HUD
-@onready var right_controller = $XROrigin3D/RightHand
+@onready var log_spawner = $ThirdLevel/LogSpawner
 
 var is_game_over: bool = false
 var _spawn_transform: Transform3D          # Transform del punto de inicio del nivel
 var _current_spawn_transform: Transform3D  # Transform del ultimo checkpoint activado
+
+## this loads your saved log.tscn file
+const LOG_SCENE := preload("res://scenes/objects/obstacles/log.tscn")
+@export var spawn_x: float = 0.0
+@export var spawn_y: float = 6.0
+@export var spawn_z: float = 0.0
 
 ## Inicializa la escena base. 
 func _ready() -> void:
@@ -61,6 +67,10 @@ func scene_visible(user_data = null) -> void:
 	super()
 	_set_player_movement(false)
 	hud.start_countdown()
+	
+	if log_spawner:
+		log_spawner.start()
+
 
 ## Actualiza el punto de respawn activo al transform del checkpoint alcanzado
 ## HUD: Muestra el mensaje de confirmacion.
@@ -73,12 +83,16 @@ func _on_checkpoint_reached(new_transform: Transform3D) -> void:
 func _on_win_area_entered(body: Node3D) -> void:
 	if _is_player(body):
 		hud.show_win()
+		if log_spawner:
+			log_spawner.stop()
 
 ## Gestiona la entrada del jugador en la zona de muerte.
 ## HUD: Delega en el HUD la logica de vidas y respawn.
 func _on_death_zone_entered(body: Node3D) -> void:
 	if _is_player(body):
 		hud.show_fail(_respawn_player)
+		if log_spawner:
+			log_spawner.stop()
 
 ## Teletransporta al jugador al ultimo checkpoint activado, o al spawn inicial
 ## si no se ha activado ninguno, usando center_player_on() de XRTools.

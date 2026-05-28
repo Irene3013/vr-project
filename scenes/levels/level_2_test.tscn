@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://3t6x6ke4a3on"]
+
+[ext_resource type="PackedScene" uid="uid://bb5f3j0gdt6nw" path="res://scenes/staging/scene_base.tscn" id="1_earem"]
+[ext_resource type="Script" uid="uid://c8wm2txk27qrh" path="res://scenes/levels/level_2_test.gd" id="2_jfqe1"]
+[ext_resource type="PackedScene" uid="uid://clexm37rqvayw" path="res://scenes/objects/end_platform.tscn" id="3_tyll0"]
+[ext_resource type="PackedScene" uid="uid://beyo4hijexp1t" path="res://scenes/objects/start_platform.tscn" id="4_qexdv"]
+[ext_resource type="PackedScene" uid="uid://bcr7e702nmo2v" path="res://scenes/objects/death_zone.tscn" id="5_b2es7"]
+[ext_resource type="PackedScene" uid="uid://8rm0kttrjt7u" path="res://scenes/objects/tilted_floor.tscn" id="6_pgh6y"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wipeout"]
+sky_horizon_color = Color(0.5882353, 0.7882353, 0.9607843, 1)
+ground_horizon_color = Color(0.5882353, 0.7882353, 0.9607843, 1)
+
+[sub_resource type="Sky" id="Sky_wipeout"]
+sky_material = SubResource("ProceduralSkyMaterial_wipeout")
+
+[sub_resource type="Environment" id="Environment_wipeout"]
+background_mode = 2
+sky = SubResource("Sky_wipeout")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="SceneBase" instance=ExtResource("1_earem")]
+script = ExtResource("2_jfqe1")
+spawn_x = 0.0
+spawn_y = 6.0
+spawn_z = 0.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource("Environment_wipeout")
+
+[node name="StartSign" type="Label3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 1.55, -2.9)
+outline_modulate = Color(0.05, 0.05, 0.05, 1)
+text = "AVANZA"
+font_size = 96
+
+[node name="Basics" type="Node3D" parent="." index="3"]
+
+[node name="EndPlatform" parent="Basics" index="0" instance=ExtResource("3_tyll0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8686376, -36.616844)
+
+[node name="StartPlatform" parent="Basics" index="1" instance=ExtResource("4_qexdv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.39118195)
+
+[node name="DeathZone" parent="Basics" index="2" instance=ExtResource("5_b2es7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 21.957512)
+
+[node name="Obstacles" type="Node3D" parent="." index="4"]
+
+[node name="TiltedFloor" parent="Obstacles" index="0" instance=ExtResource("6_pgh6y")]
+transform = Transform3D(1, 0, 0, 0, 0.99254614, -0.12186935, 0, 0.12186935, 0.99254614, 0, -4.7361546, -20.473171)
+visible = false
+
+[node name="FinishSign" type="Label3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 0.999945, 0.010489237, 0, -0.010489237, 0.999945, 0, 6.297145, -35.117416)
+outline_modulate = Color(0.05, 0.05, 0.05, 1)
+text = "META"
+font_size = 110
+outline_size = 14
+
+[node name="LogTimer" type="Timer" parent="." index="6"]
+
+[node name="Platforms" type="Node" parent="." index="7"]
+
+[node name="TiltedFloor" parent="Platforms" index="0" instance=ExtResource("6_pgh6y")]
+transform = Transform3D(1, 0, 0, 0, 0.99254614, -0.12186935, 0, 0.12186935, 0.99254614, 0, 2, -20)

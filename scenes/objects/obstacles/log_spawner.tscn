@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvgnijd3xgodq"]
+
+[ext_resource type="Script" uid="uid://djkymo8c8pwl8" path="res://scenes/objects/obstacles/log_spawner.gd" id="1_go86s"]
+
+[node name="LogSpawner" type="Node3D"]
+script = ExtResource("1_go86s")
+
+[node name="LogTimer" type="Timer" parent="."]

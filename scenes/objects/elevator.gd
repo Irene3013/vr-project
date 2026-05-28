@@ -3,6 +3,7 @@ extends Node3D
 @onready var body: AnimatableBody3D = $PlataformaMovil
 @onready var area: Area3D = $PlataformaMovil/AreaAscensor
 @onready var mesh: MeshInstance3D = $PlataformaMovil/MeshInstance3D
+@onready var audio = $MovingAudio
 
 ## Altura en metros que sube el ascensor desde su posicion inicial.
 @export var lift_height: float = 5.0
@@ -45,6 +46,7 @@ func _on_body_exited(body_node: Node) -> void:
 ## de modo que la velocidad es siempre uniforme independientemente
 ## de si el ascensor esta a mitad de recorrido.
 func _move_to(target: Vector3) -> void:
+	audio.play()
 	if _tween:
 		_tween.kill()
 	var distance = body.global_position.distance_to(target)
@@ -53,6 +55,7 @@ func _move_to(target: Vector3) -> void:
 	_tween.set_trans(Tween.TRANS_SINE)
 	_tween.set_ease(Tween.EASE_IN_OUT)
 	_tween.tween_property(body, "position", target - global_position, duration)
+	audio.stop()
 
 ## Activa o desactiva la emision del material para indicar visualmente
 ## si el ascensor esta en movimiento (azul brillante) o en reposo.

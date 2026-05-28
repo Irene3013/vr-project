@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://dknibswi4g282"]
 
-[ext_resource type="Script" uid="uid://dk1j2aan6o77a" path="res://scenes/levels/doors_level.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://dk1j2aan6o77a" path="res://scenes/levels/second_level.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://caknjdwpl6su6" path="res://scenes/objects/regular_platform.tscn" id="2_ahpcv"]
 [ext_resource type="PackedScene" uid="uid://d310dnt5qsa0u" path="res://scenes/objects/doors/doors_row.tscn" id="2_doors_row"]
 [ext_resource type="PackedScene" uid="uid://c2l7id3poov8u" path="res://scenes/objects/obstacles/falling_platform.tscn" id="3_falling"]
