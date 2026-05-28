@@ -3,7 +3,7 @@ extends Node3D
 @onready var body: AnimatableBody3D = $PlataformaMovil
 @onready var area: Area3D = $PlataformaMovil/AreaAscensor
 @onready var mesh: MeshInstance3D = $PlataformaMovil/MeshInstance3D
-@onready var audio = $MovingAudio
+@onready var audio = $PlataformaMovil/MovingAudio
 
 ## Altura en metros que sube el ascensor desde su posicion inicial.
 @export var lift_height: float = 5.0
@@ -27,6 +27,8 @@ func _ready() -> void:
 
 	area.body_entered.connect(_on_body_entered)
 	area.body_exited.connect(_on_body_exited)
+	
+	audio.stop()
 
 ## Cuando el jugador entra en el area, activa el indicador visual y sube el ascensor.
 func _on_body_entered(body_node: Node) -> void:

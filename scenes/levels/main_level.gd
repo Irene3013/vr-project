@@ -91,8 +91,6 @@ func _on_win_area_entered(body: Node3D) -> void:
 func _on_death_zone_entered(body: Node3D) -> void:
 	if _is_player(body):
 		hud.show_fail(_respawn_player)
-		if log_spawner:
-			log_spawner.stop()
 
 ## Teletransporta al jugador al ultimo checkpoint activado, o al spawn inicial
 ## si no se ha activado ninguno, usando center_player_on() de XRTools.

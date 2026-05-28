@@ -1,4 +1,4 @@
-# [NOMBRE DEL JUEGO]
+# LAST RUNNER
 
 ## Proyecto de Realidad Virtual y Aumentada
 
@@ -49,7 +49,8 @@ En ausencia de hardware XR el juego activa automáticamente un modo de escritori
 ---
 
 ## Estructura del Proyecto
-## Estructura del Proyecto
+
+```
 project/
 ├── addons/
 │   ├── godot-xr-tools/
@@ -58,12 +59,12 @@ project/
 │   ├── audio/
 │   ├── shaders/
 │   └── splash/
+│   └── splash/
 └── scenes/
 ├── levels/
 ├── objects/
-│   └── obstacles/
 └── staging/
-
+```
 
 **`addons/`** — Plugins externos necesarios para el funcionamiento en VR.
 
@@ -109,17 +110,20 @@ Todos los obstáculos están en `scenes/objects/obstacles/` como escenas indepen
 
 `falling_platform.gd` — se derrumba tras `collapse_delay` segundos al ser pisada y reaparece tras `respawn_delay`.
 
+`tilted_platform.gd` — rampa estática inclinada visualmente que usa wall walk de XRTools para permitir al jugador caminar sobre superficies con pendiente.
+
+
 `rotating_obstacle.gd` — rota sobre un eje configurable y aplica velocidad tangencial al jugador calculada como producto vectorial entre el eje y el vector radial.
 
 `swinging_hammer.gd` — péndulo cuya fuerza de empuje es proporcional a la velocidad angular en el momento del impacto.
-
-`plataforma_balanceable.gd` — se inclina según la posición lateral del jugador y cae si permanece quieto más de `seconds_until_fall_tilt` segundos.
 
 `elevator_platform.gd` — sube al detectar al jugador en su área y baja al salir, con retardo configurable.
 
 `door.gd` / `doors_row.gd` — fila de tres puertas donde una es correcta al azar. Las incorrectas devuelven al jugador con feedback visual y sonoro.
 
 `log.gd` — tronco generado proceduralmente en tiempo de ejecución con malla, colisión y material creados por código. Cae por gravedad desde una posición elevada.
+
+`log_spawner.gd` — spawner procedural de troncos con intervalo aleatorio configurable entre `min_interval` y `max_interval`. Instancia troncos en tiempo de ejecución, los lanza con impulso físico y los elimina automáticamente tras 10 segundos. Se activa y desactiva mediante `start()` y `stop()`.
 
 `globo.gd` — objeto físico que reproduce un sonido de rebote aleatorio al contacto con el jugador.
 

@@ -1,11 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://blrb2u1n8tgvb"]
 
 [ext_resource type="PackedScene" uid="uid://bnqnnnet4dw12" path="res://addons/godot-xr-tools/staging/staging.tscn" id="1_2h3pe"]
-[ext_resource type="Texture2D" uid="uid://cs35tt238xl4v" path="res://assets/splash/1_wipeout_splash.png" id="2_fw3y5"]
+[ext_resource type="Texture2D" uid="uid://ctnl5up1j65xf" path="res://assets/splash/splash.png" id="2_fw3y5"]
 
 [node name="Staging" instance=ExtResource("1_2h3pe")]
 main_scene = "uid://dwl3hl3u7okkq"
 
+[node name="XROrigin3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.437241, 0)
+
 [node name="LoadingScreen" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.949007, 1.7695999, 0.2704172)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.29228, 8.768229, -0.39557552)
 splash_screen = ExtResource("2_fw3y5")
